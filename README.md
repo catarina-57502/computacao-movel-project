@@ -1,9 +1,7 @@
-Grupo - 4
+Grupo: 4
 
-Elementos - Catarina Moita nº21805632
+Elementos: Catarina Moita nº21805632 & João Joyce nº21805677
 
-          - João Joyce nº2180567
+Link para video: 
 
-Link para video - 
-
-Autoavaliação - 
+Autoavaliação:
