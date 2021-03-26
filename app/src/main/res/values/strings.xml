@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">COVID Buddy</string>
+    <string name="date">Date</string>
+    <string name="result">Result</string>
+    <string name="positive">Positive</string>
+    <string name="negative">Negative</string>
+    <string name="local_hint">Insert a location</string>
+    <string name="photo_hint">Insert a photograph of your test</string>
+    <string name="date_hint">dd/mm/yyyy</string>
+    <string name="local">Local</string>
+    <string name="photo">Photograph (Optional)</string>
+    <string name="submit">SUBMIT</string>
+    <string name="invalid_date">Please enter a valid date</string>
+    <string name="invalid_result">Please enter a valid result</string>
+    <string name="invalid_local">Please enter a valid local</string>
 </resources>

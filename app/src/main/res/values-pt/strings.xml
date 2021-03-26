@@ -1,2 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">COVID Buddy</string>
+    <string name="date">Datq</string>
+    <string name="result">Resultada</string>
+    <string name="positive">Positivo</string>
+    <string name="negative">Negativo</string>
+    <string name="local">Local</string>
+    <string name="photo">Fotografia (Opcional)</string>
+    <string name="local_hint">Introduza um local</string>
+    <string name="photo_hint">Introduza uma fotografia do teste</string>
+    <string name="date_hint">dd/mm/yyyy</string>
+    <string name="submit">SUBMETER</string>
+    <string name="invalid_date">Por favor introduza uma data válida</string>
+    <string name="invalid_result">Por favor introduza um resultado válido</string>
+    <string name="invalid_local">Por favor introduza um local válido</string>
+</resources>
