@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_test_register.*
+import pt.ulusofona.deisi.a2020.cm.g4.DataSource.Companion.tests
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -21,9 +22,6 @@ class TestRegisterActivity : AppCompatActivity() {
     private val DATE_KEY = "date"
     private val RESULT_KEY = "result"
     private val LOCAL_KEY = "local"
-    companion object {
-        var tests = ArrayList<Test>()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
