@@ -52,11 +52,12 @@ class TestRegisterActivity : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         date_input.setText(savedInstanceState.getString(DATE_KEY))
+        result_input.check(savedInstanceState.getInt(RESULT_KEY))
         local_input.setText(savedInstanceState.getString(LOCAL_KEY))
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.run { putString(DATE_KEY,  date_input.text.toString()); putString(LOCAL_KEY,  local_input.text.toString()) }
+        outState.run { putString(DATE_KEY,  date_input.text.toString()); putInt(RESULT_KEY,  result_input.checkedRadioButtonId); putString(LOCAL_KEY,  local_input.text.toString()) }
         super.onSaveInstanceState(outState)
     }
 
