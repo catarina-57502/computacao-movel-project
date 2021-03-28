@@ -24,8 +24,6 @@ class TestListActivity : AppCompatActivity() {
         super.onStart()
         val lista = intent.getParcelableArrayListExtra<Test>(EXTRA_TEST)
 
-        Log.i(TAG, lista.toString())
-
         list_test.layoutManager = LinearLayoutManager(this)
         list_test.adapter = TestAdapter(this, R.layout.item_test, lista)
 

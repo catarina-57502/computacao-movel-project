@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_test_register.*
 import kotlinx.android.synthetic.main.item_test.*
@@ -63,7 +64,9 @@ class TestRegisterActivity : AppCompatActivity() {
 
     fun onClickSubmit(view: View){
         Log.i(TAG, "Click no botão Submit")
-        tests.add(Test(date_input.text.toString(), local_input.text.toString(), photo_input.text.toString()))
+        val result: RadioButton = findViewById(result_input.checkedRadioButtonId)
+        Log.i(TAG, result.text.toString())
+        tests.add(Test(date_input.text.toString(), result.text.toString(), local_input.text.toString(), photo_input.text.toString()))
         val intent = Intent(this, TestListActivity::class.java)
         intent.apply { putParcelableArrayListExtra(EXTRA_TEST, tests) }
         startActivity(intent)

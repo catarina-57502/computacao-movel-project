@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class Test(val date: String, val local: String, val image: String) : Parcelable
+class Test(val date: String, val result: String, val local: String, val image: String) : Parcelable
