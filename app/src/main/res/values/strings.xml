@@ -13,4 +13,5 @@
     <string name="invalid_date">Please enter a valid date</string>
     <string name="invalid_result">Please enter a valid result</string>
     <string name="invalid_local">Please enter a valid local</string>
+    <string name="test">Test</string>
 </resources>

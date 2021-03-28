@@ -16,48 +16,27 @@
         android:layout_marginBottom="3dp"
         card_view:cardCornerRadius="4dp">
 
-        <TextView
-            android:id="@+id/text_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"
-            />
 
         <TextView
-            android:id="@+id/text_result"
+            android:id="@+id/text_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginTop="35dp"
-            />
-
-        <TextView
-            android:id="@+id/text_local"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/test"
             />
 
         <TextView
             android:id="@+id/text_dateReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginTop="120dp"
+            android:textSize="18sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             />
-
-
-        <ImageView
-            android:layout_width="190dp"
-            android:layout_height="190dp"
-            android:src="@drawable/photo"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="80dp"
-            />
-
 
     </androidx.cardview.widget.CardView>
 

@@ -118,4 +118,14 @@
         android:onClick="onClickSubmit"
         android:text="@string/submit"/>
 
+    <Button
+        android:id="@+id/lista_testes"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:onClick="onClickGO"
+        android:text="GO"/>
+
 </LinearLayout>

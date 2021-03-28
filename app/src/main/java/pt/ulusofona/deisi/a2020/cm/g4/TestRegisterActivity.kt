@@ -9,22 +9,21 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_test_register.*
-import kotlinx.android.synthetic.main.item_test.*
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 const val EXTRA_TEST = "pt.ulusofona.deisi.a2020.cm.g4.TEST"
 
 class TestRegisterActivity : AppCompatActivity() {
 
     private val TAG = TestRegisterActivity::class.java.simpleName
-    private var tests = ArrayList<Test>()
     private val DATE_KEY = "date"
     private val RESULT_KEY = "result"
     private val LOCAL_KEY = "local"
+    companion object {
+        var tests = ArrayList<Test>()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,11 +69,13 @@ class TestRegisterActivity : AppCompatActivity() {
         val result: RadioButton = findViewById(result_input.checkedRadioButtonId)
         Log.i(TAG, result.text.toString())
         tests.add(Test(date_input.text.toString(), result.text.toString(), local_input.text.toString(), photo_input.text.toString(), SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Calendar.getInstance().time)))
+    }
+
+    fun onClickGO(view: View){
         val intent = Intent(this, TestListActivity::class.java)
         intent.apply { putParcelableArrayListExtra(EXTRA_TEST, tests) }
         startActivity(intent)
         finish()
-
     }
 
 }
