@@ -14,6 +14,7 @@ class TestAdapter(private val context: Context, private val layout: Int, private
         val date: TextView = view.text_date
         val result: TextView = view.text_result
         val local: TextView = view.text_local
+        val dateReg: TextView = view.text_dateReg
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -24,6 +25,7 @@ class TestAdapter(private val context: Context, private val layout: Int, private
         holder.date.text = items[position].date
         holder.result.text = items[position].result
         holder.local.text = items[position].local
+        holder.dateReg.text = items[position].dateReg
     }
 
     override fun getItemCount() = items.size

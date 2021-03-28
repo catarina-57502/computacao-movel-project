@@ -10,7 +10,10 @@ import android.widget.RadioButton
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_test_register.*
 import kotlinx.android.synthetic.main.item_test.*
+import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 const val EXTRA_TEST = "pt.ulusofona.deisi.a2020.cm.g4.TEST"
@@ -66,7 +69,7 @@ class TestRegisterActivity : AppCompatActivity() {
         Log.i(TAG, "Click no botão Submit")
         val result: RadioButton = findViewById(result_input.checkedRadioButtonId)
         Log.i(TAG, result.text.toString())
-        tests.add(Test(date_input.text.toString(), result.text.toString(), local_input.text.toString(), photo_input.text.toString()))
+        tests.add(Test(date_input.text.toString(), result.text.toString(), local_input.text.toString(), photo_input.text.toString(), SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Calendar.getInstance().time)))
         val intent = Intent(this, TestListActivity::class.java)
         intent.apply { putParcelableArrayListExtra(EXTRA_TEST, tests) }
         startActivity(intent)
