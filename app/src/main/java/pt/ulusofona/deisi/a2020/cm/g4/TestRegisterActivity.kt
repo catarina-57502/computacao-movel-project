@@ -1,13 +1,27 @@
 package pt.ulusofona.deisi.a2020.cm.g4
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_test_register.*
+import kotlinx.android.synthetic.main.item_test.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+const val EXTRA_TEST = "pt.ulusofona.deisi.a2020.cm.g4.TEST"
+
 class TestRegisterActivity : AppCompatActivity() {
+
+    private val TAG = TestRegisterActivity::class.java.simpleName
+    private var tests = ArrayList<Test>()
+    private val DATE_KEY = "date"
+    private val RESULT_KEY = "result"
+    private val LOCAL_KEY = "local"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_register)
@@ -29,10 +43,31 @@ class TestRegisterActivity : AppCompatActivity() {
         }
 
         textView.setOnClickListener {
-            DatePickerDialog(this@TestRegisterActivity, dateSetListener,
+            DatePickerDialog(this, dateSetListener,
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)).show()
         }
     }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        date_input.setText(savedInstanceState.getString(DATE_KEY))
+        local_input.setText(savedInstanceState.getString(LOCAL_KEY))
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run { putString(DATE_KEY,  date_input.text.toString()); putString(LOCAL_KEY,  local_input.text.toString()) }
+        super.onSaveInstanceState(outState)
+    }
+
+    fun onClickSubmit(view: View){
+        Log.i(TAG, "Click no botão Submit")
+        tests.add(Test(date_input.text.toString(), local_input.text.toString(), photo_input.text.toString()))
+        val intent = Intent(this, TestListActivity::class.java)
+        intent.apply { putParcelableArrayListExtra(EXTRA_TEST, tests) }
+        startActivity(intent)
+        finish()
+
+    }
+
 }

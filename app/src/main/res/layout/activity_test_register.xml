@@ -42,7 +42,7 @@
         />
 
     <RadioGroup
-        android:id="@+id/radioGroup1"
+        android:id="@+id/result_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -115,6 +115,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="50dp"
+        android:onClick="onClickSubmit"
         android:text="@string/submit"/>
 
 </LinearLayout>
