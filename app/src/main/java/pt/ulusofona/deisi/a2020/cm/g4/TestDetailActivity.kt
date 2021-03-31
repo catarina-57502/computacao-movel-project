@@ -1,12 +1,9 @@
 package pt.ulusofona.deisi.a2020.cm.g4
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_test_detail.*
-import kotlinx.android.synthetic.main.activity_test_list.*
+import kotlinx.android.synthetic.main.activity_test_register.*
 
 
 private val TAG = TestDetailActivity::class.java.simpleName
@@ -15,6 +12,14 @@ class TestDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_detail)
+
+        setSupportActionBar(toolbar_back)
+
+        supportActionBar?.apply {
+            title = getString(R.string.test_details);
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
     }
 
     override fun onStart(){
@@ -23,12 +28,7 @@ class TestDetailActivity : AppCompatActivity() {
         detail_date.text = getIntent().getStringExtra("TESTDATE")
         detail_result.text = getIntent().getStringExtra("TESTRESULT")
         detail_local.text = getIntent().getStringExtra("TESTLOCAL")
-
-
-        button_back2.setOnClickListener{
-            val intent = Intent(this, TestRegisterActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
+
+
 }

@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:elevation="4dp"
+        android:tooltipText="@string/test_details"/>
+
     <TextView
         android:id="@+id/date"
         android:layout_width="match_parent"
@@ -77,12 +87,5 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/photo" />
-
-    <Button
-        android:id="@+id/button_back2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="BACK"
-        />
 
 </LinearLayout>
