@@ -11,9 +11,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        android:elevation="4dp"
-        android:tooltipText="@string/test_details"/>
+        android:theme="@style/ToolbarTheme"/>
 
     <TextView
         android:id="@+id/date"
