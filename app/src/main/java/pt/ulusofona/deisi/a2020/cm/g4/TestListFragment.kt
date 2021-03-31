@@ -40,10 +40,6 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener {
         list_test.layoutManager = LinearLayoutManager(activity as Context)
         list_test.adapter = lista?.let { TestAdapter(activity as Context, R.layout.item_test, it, this) }
 
-
-        button_back.setOnClickListener{
-            fragmentManager?.let { it1 -> NavigationManager.goToTestRegisterFragment(it1, null) }
-        }
     }
 
 
