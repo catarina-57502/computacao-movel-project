@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_test_detail.*
 import kotlinx.android.synthetic.main.activity_test_list.*
 
+
 private val TAG = TestDetailActivity::class.java.simpleName
 
 class TestDetailActivity : AppCompatActivity() {

@@ -20,21 +20,20 @@
             android:id="@+id/text_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/white"
+            android:textSize="0sp"
             />
         <TextView
             android:id="@+id/text_local"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="0sp"
             android:textColor="@color/white"
             />
         <TextView
             android:id="@+id/text_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="0sp"
             android:textColor="@color/white"
             />
 

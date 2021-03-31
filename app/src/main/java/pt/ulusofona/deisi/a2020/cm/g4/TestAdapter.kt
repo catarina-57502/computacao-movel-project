@@ -38,12 +38,7 @@ class TestAdapter(private val context: Context, private val layout: Int, private
     }
 
     override fun onBindViewHolder(holder: TestViewHolder, position: Int) {
-/*
-holder.date.text = items[position].date
-        holder.result.text = items[position].result
-        holder.local.text = items[position].local
-        holder.dateReg.text = items[position].dateReg
- */
+
         holder.initialize(items.get(position),clickListner)
 
 

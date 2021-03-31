@@ -14,4 +14,11 @@
     <string name="invalid_result">Please enter a valid result</string>
     <string name="invalid_local">Please enter a valid local</string>
     <string name="test">Test</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="register_test">Test Register</string>
+    <string name="list_test">Test Listing</string>
+    <string name="contacts">Contacts</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="slogan">Inform yourself. Protect yourself</string>
 </resources>
