@@ -19,6 +19,11 @@
             android:title="@string/list_test"
             />
         <item
+            android:id="@+id/nav_vaccination"
+            android:icon="@drawable/ic_vaccine"
+            android:title="@string/vaccination"
+            />
+        <item
             android:id="@+id/nav_contacts"
             android:icon="@drawable/ic_contacts"
             android:title="@string/contacts"

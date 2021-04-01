@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
         setupDrawerMenu()
         if(!screenRotated(savedInstanceState)){
-            NavigationManager.goToTestRegisterFragment(supportFragmentManager, null)
+            NavigationManager.goToTestRegisterFragment(supportFragmentManager)
         }
     }
 
@@ -41,8 +41,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val bundle = Bundle()
         bundle.putParcelableArrayList(EXTRA_TEST, DataSource.tests)
         when(item.itemId){
-            R.id.nav_register -> NavigationManager.goToTestRegisterFragment(supportFragmentManager, null)
+            R.id.nav_register -> NavigationManager.goToTestRegisterFragment(supportFragmentManager)
             R.id.nav_list -> NavigationManager.goToTestListFragment(supportFragmentManager, bundle)
+            R.id.nav_vaccination -> NavigationManager.goToVaccinationFragment(supportFragmentManager)
         }
         drawer.closeDrawer(GravityCompat.START)
         return true

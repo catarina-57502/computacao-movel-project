@@ -27,9 +27,12 @@ class NavigationManager {
         }
          */
 
+        fun goToVaccinationFragment(fm: FragmentManager){
+            placeFragment(fm, TestRegisterFragment(), null)
+        }
 
-        fun goToTestRegisterFragment(fm: FragmentManager, bundle: Bundle?){
-            placeFragment(fm, TestRegisterFragment(), bundle)
+        fun goToTestRegisterFragment(fm: FragmentManager){
+            placeFragment(fm, TestRegisterFragment(), null)
 
         }
 
