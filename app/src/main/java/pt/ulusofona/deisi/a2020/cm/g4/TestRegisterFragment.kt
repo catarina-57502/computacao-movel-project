@@ -3,6 +3,7 @@ package pt.ulusofona.deisi.a2020.cm.g4
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color.*
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -15,6 +16,7 @@ import android.widget.TextView
 import androidx.annotation.Nullable
 import butterknife.ButterKnife
 import butterknife.OnClick
+import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_test_register.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -58,6 +60,21 @@ class TestRegisterFragment : Fragment() {
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)).show()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
+        arcPointer.value = 0.25f
+        arcPointer.setNotches(3)
+        val cores = listOf(GREEN, YELLOW, RED)
+        arcPointer.setNotchesColors(cores.toIntArray())
+        arcPointer.setNotchesStrokeWidth(15.0f)
+        arcPointer.setAnimated(true)
+        arcPointer.setMarkerLengthRatio(0.2f)
+        arcPointer.setLineLengthRatio(0.7f)
+        arcPointer.setMarkerStrokeWidth(7.0f)
+        arcPointer.setLineStrokeWidth(7.0f)
     }
 
     /*
