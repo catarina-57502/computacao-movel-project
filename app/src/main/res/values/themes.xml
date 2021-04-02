@@ -9,4 +9,8 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
     </style>
+    <string-array name="sort_array">
+        <item>Descending</item>
+        <item>Ascending</item>
+    </string-array>
 </resources>

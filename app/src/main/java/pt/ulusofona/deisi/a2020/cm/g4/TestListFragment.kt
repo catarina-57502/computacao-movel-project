@@ -5,18 +5,23 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_test_list.*
 
+
 var lista: ArrayList<Test>? = ArrayList<Test>()
 
-class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener {
+class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, AdapterView.OnItemSelectedListener {
     private val TAG = TestListFragment::class.java.simpleName
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,6 +37,14 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener {
         }
     }
 
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+        val text = parent.getItemAtPosition(pos).toString()
+        Toast.makeText(parent.context, text, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+        // Another interface callback
+    }
 
     override fun onStart(){
         super.onStart()
@@ -50,6 +63,16 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener {
         arcPointer.setLineLengthRatio(0.7f)
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
+
+        val spinner: Spinner = getView()!!.findViewById(R.id.sort_spinner)
+
+        val adapter = ArrayAdapter.createFromResource(
+            activity as Context,
+           R.array.sort_array, R.layout.item_sort
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+        spinner.onItemSelectedListener = this
 
     }
 

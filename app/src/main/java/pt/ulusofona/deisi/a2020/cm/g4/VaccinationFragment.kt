@@ -6,12 +6,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import butterknife.OnClick
 import io.github.dvegasa.arcpointer.ArcPointer
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_vaccination.*
 import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
 
