@@ -4,15 +4,19 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.provider.ContactsContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import butterknife.OnClick
 import io.github.dvegasa.arcpointer.ArcPointer
+import kotlinx.android.synthetic.main.fragment_vaccination.*
+import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
 
 class VaccinationFragment : Fragment() {
 
+    private val TAG = VaccinationFragment::class.java.simpleName
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +38,13 @@ class VaccinationFragment : Fragment() {
         arcPointer.setLineLengthRatio(0.7f)
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
+
+        doses_api.text = DataSource().doses.toString()
+        doses_novas_api.text = DataSource().doses_novas.toString()
+        doses1_api.text = DataSource().doses1.toString()
+        doses1_perc_api.text = (DataSource().doses1_perc * 100).toString() + '%'
+        doses2_api.text = DataSource().doses2.toString()
+        doses2_perc_api.text = (DataSource().doses2_perc * 100).toString() + '%'
     }
 
     @OnClick(R.id.simulation_button)
