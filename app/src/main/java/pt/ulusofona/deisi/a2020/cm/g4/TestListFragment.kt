@@ -2,7 +2,6 @@ package pt.ulusofona.deisi.a2020.cm.g4
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -12,10 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
-import butterknife.OnClick
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_test_list.*
-import pt.ulusofona.deisi.a2020.cm.g4.DataSource.Companion.tests
 
 var lista: ArrayList<Test>? = ArrayList<Test>()
 

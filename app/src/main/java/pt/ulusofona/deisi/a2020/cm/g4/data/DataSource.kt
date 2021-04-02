@@ -1,10 +1,15 @@
-package pt.ulusofona.deisi.a2020.cm.g4
+package pt.ulusofona.deisi.a2020.cm.g4.data
+import pt.ulusofona.deisi.a2020.cm.g4.Test
 
-class DataSource {
+class DataSource{
 
     companion object {
         var tests = ArrayList<Test>()
     }
+
+    /*******************************DASHBOARD*************************************/
+
+    /****************************************************************************/
 
     /*******************************VACINAÇÃO*************************************/
     var data = "1-04-2021"

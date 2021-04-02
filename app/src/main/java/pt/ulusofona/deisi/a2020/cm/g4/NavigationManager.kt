@@ -15,12 +15,12 @@ class NavigationManager {
             transition.commit()
         }
 
-        /*
-         fun goToDashboardFragment(fm: FragmentManager, bundle: Bundle?){
-            placeFragment(fm, DashboardFragment(), bundle)
+
+         fun goToDashboardFragment(fm: FragmentManager){
+            placeFragment(fm, DashboardFragment(), null)
 
         }
-
+ /*
         fun goToContactsFragment(fm: FragmentManager, bundle: Bundle?){
             placeFragment(fm, ContactsFragment(), bundle)
 
@@ -28,7 +28,7 @@ class NavigationManager {
          */
 
         fun goToVaccinationFragment(fm: FragmentManager){
-            placeFragment(fm, TestRegisterFragment(), null)
+            placeFragment(fm, VaccinationFragment(), null)
         }
 
         fun goToTestRegisterFragment(fm: FragmentManager){
