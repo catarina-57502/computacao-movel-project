@@ -25,4 +25,8 @@
     <string name="test_details">Detalhes do Teste</string>
     <string name="vaccination">Vacinação</string>
     <string name="danger">Estou em perigo?</string>
+    <string name="total_doses">Total de doses administradas</string>
+    <string name="total_doses1">Primeiras doses</string>
+    <string name="total_doses2">Totalmente vacinadas</string>
+    <string name="simulator">VERIFIQUE SE CONSTA NA FASE 1 OU 2 DO PLANO DE VACINAÇÃO ></string>
 </resources>
