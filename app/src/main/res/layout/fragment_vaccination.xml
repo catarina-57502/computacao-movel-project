@@ -254,7 +254,6 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="35dp"
         android:background="@color/blue"
-        android:text="@string/simulator"/>
-
+        android:text="@string/simulator" />
 
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,11 +46,12 @@ class VaccinationFragment : Fragment() {
         doses1_perc_api.text = (DataSource().doses1_perc * 100).toString() + '%'
         doses2_api.text = DataSource().doses2.toString()
         doses2_perc_api.text = (DataSource().doses2_perc * 100).toString() + '%'
+
+        simulation_button.setOnClickListener{
+            Log.i(TAG, "Click button")
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://covid19.min-saude.pt/vacinacao/"))
+            startActivity(i)
+        }
     }
 
-    @OnClick(R.id.simulation_button)
-    fun onClickSimulation(view: View) {
-        val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://covid19.min-saude.pt/vacinacao/"))
-        startActivity(i)
-    }
 }
