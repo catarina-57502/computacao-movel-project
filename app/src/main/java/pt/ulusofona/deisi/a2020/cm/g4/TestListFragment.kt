@@ -25,8 +25,6 @@ import kotlin.collections.ArrayList
 
 var lista: ArrayList<Test>? = ArrayList<Test>()
 
-var count = 0
-
 class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, AdapterView.OnItemSelectedListener {
     private val TAG = TestListFragment::class.java.simpleName
 

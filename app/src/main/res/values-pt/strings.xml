@@ -29,4 +29,7 @@
     <string name="total_doses1">Primeiras doses</string>
     <string name="total_doses2">Totalmente vacinadas</string>
     <string name="simulator">VERIFIQUE SE CONSTA NA FASE 1 OU 2 DO PLANO DE VACINAÇÃO ></string>
+    <string name="sort">Ordene por data de registo:</string>
+    <string name="descending">Descendente</string>
+    <string name="ascending">Ascendente</string>
 </resources>

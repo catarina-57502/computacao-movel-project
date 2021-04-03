@@ -10,7 +10,7 @@
         <item name="android:textColorSecondary">@color/white</item>
     </style>
     <string-array name="sort_array">
-        <item>Descending</item>
-        <item>Ascending</item>
+        <item>@string/descending</item>
+        <item>@string/ascending</item>
     </string-array>
 </resources>

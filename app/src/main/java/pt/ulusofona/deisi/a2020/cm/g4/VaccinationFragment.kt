@@ -40,7 +40,7 @@ class VaccinationFragment : Fragment() {
         arcPointer.setLineStrokeWidth(7.0f)
 
         doses_api.text = DataSource().doses.toString()
-        doses_novas_api.text = DataSource().doses_novas.toString()
+        doses_novas_api.text = "+" + DataSource().doses_novas.toString()
         doses1_api.text = DataSource().doses1.toString()
         doses1_perc_api.text = (DataSource().doses1_perc * 100).toString() + '%'
         doses2_api.text = DataSource().doses2.toString()
