@@ -17,9 +17,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_test_list.*
+import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 var lista: ArrayList<Test>? = ArrayList<Test>()
+
+var count = 0
 
 class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, AdapterView.OnItemSelectedListener {
     private val TAG = TestListFragment::class.java.simpleName
@@ -39,7 +45,20 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, Adapte
 
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         val text = parent.getItemAtPosition(pos).toString()
-        Toast.makeText(parent.context, text, Toast.LENGTH_SHORT).show()
+        var result: List<Test>
+        if(text == "Descending" ){
+            result = DataSource.tests.sortedByDescending { it.dateReg.toDate() }
+            lista!!.clear()
+            lista!!.addAll(result)
+            list_test.layoutManager = LinearLayoutManager(activity as Context)
+            list_test.adapter = lista?.let { TestAdapter(activity as Context, R.layout.item_test, it, this) }
+        }else{
+            result = DataSource.tests.sortedBy { it.dateReg.toDate() }
+            lista!!.clear()
+            lista!!.addAll(result)
+            list_test.layoutManager = LinearLayoutManager(activity as Context)
+            list_test.adapter = lista?.let { TestAdapter(activity as Context, R.layout.item_test, it, this) }
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
@@ -82,5 +101,9 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, Adapte
         val intent = Intent(activity as Context, TestDetailActivity::class.java)
         intent.apply { putExtra("TESTDATE", item.date); putExtra("TESTRESULT", item.result); putExtra("TESTLOCAL", item.local) }
         startActivity(intent)
+    }
+
+    fun String.toDate(): Date {
+        return SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).parse(this)
     }
 }
