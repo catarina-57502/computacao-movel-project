@@ -10,9 +10,9 @@
     <string name="local">Local</string>
     <string name="photo">Photograph (Optional)</string>
     <string name="submit">SUBMIT</string>
-    <string name="invalid_date">Please enter a valid date</string>
-    <string name="invalid_result">Please enter a valid result</string>
-    <string name="invalid_local">Please enter a valid local</string>
+    <string name="invalid_result">Please choose a Result</string>
+    <string name="invalid_local">Please enter a valid Location</string>
+    <string name="invalid_local_result">Result and Location must be valid</string>
     <string name="test">Test</string>
     <string name="dashboard">Dashboard</string>
     <string name="register_test">Test Register</string>
@@ -31,4 +31,7 @@
     <string name="sort">Sort registration date:</string>
     <string name="descending">Descending</string>
     <string name="ascending">Ascending</string>
+    <string name="dialogTitle">Test Register</string>
+    <string name="dialogMessage">Are you sure you want to register this Test?</string>
+    <string name="cancel">Cancel</string>
 </resources>

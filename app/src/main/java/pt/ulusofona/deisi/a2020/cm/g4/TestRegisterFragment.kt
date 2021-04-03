@@ -1,5 +1,6 @@
 package pt.ulusofona.deisi.a2020.cm.g4
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.graphics.Color.*
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.Toast
 import butterknife.ButterKnife
 import butterknife.OnClick
 import io.github.dvegasa.arcpointer.ArcPointer
@@ -75,26 +77,46 @@ class TestRegisterFragment : Fragment() {
         arcPointer.setLineStrokeWidth(7.0f)
     }
 
-    /*
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        date_input.setText(savedInstanceState.getString(DATE_KEY))
-        result_input.check(savedInstanceState.getInt(RESULT_KEY))
-        local_input.setText(savedInstanceState.getString(LOCAL_KEY))
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.run { putString(DATE_KEY,  date_input.text.toString()); putInt(RESULT_KEY,  result_input.checkedRadioButtonId); putString(LOCAL_KEY,  local_input.text.toString()) }
-        super.onSaveInstanceState(outState)
-    }
-     */
 
     @OnClick(R.id.submit)
     fun onClickSubmit(view: View){
         Log.i(TAG, "Click no botão Submit")
-        val result: RadioButton = getView()!!.findViewById(result_input.checkedRadioButtonId)
-        Log.i(TAG, result.text.toString())
-        DataSource.tests.add(Test(date_input.text.toString(), result.text.toString(), local_input.text.toString(), photo_input.text.toString(), SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(
-            Calendar.getInstance().time)))
+        val result: RadioButton? = getView()?.findViewById(result_input.checkedRadioButtonId)
+        when {
+            result==null && local_input.text.toString().isBlank() -> {
+                Toast.makeText(activity, resources.getString(R.string.invalid_local_result), Toast.LENGTH_SHORT).show()
+            }
+            result==null -> {
+                Toast.makeText(activity, resources.getString(R.string.invalid_result), Toast.LENGTH_SHORT).show()
+            }
+            local_input.text.toString().isBlank() -> {
+                Toast.makeText(activity, resources.getString(R.string.invalid_local), Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                val builder = AlertDialog.Builder(activity as Context)
+
+                var alertDialog: AlertDialog? = null
+
+                builder.setTitle(R.string.dialogTitle)
+                builder.setMessage(R.string.dialogMessage)
+                builder.setIcon(R.drawable.ic_submit)
+
+                builder.setPositiveButton(resources.getString(R.string.submit)){dialogInterface, which ->
+                    DataSource.tests.add(Test(date_input.text.toString(), result.text.toString(), local_input.text.toString(), photo_input.text.toString(), SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(
+                        Calendar.getInstance().time)))
+                }
+                builder.setNegativeButton(resources.getString(R.string.cancel)){dialogInterface , which ->
+                    alertDialog!!.dismiss()
+                }
+
+                alertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setBackgroundColor(resources.getColor(R.color.blue))
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(resources.getColor(R.color.white))
+            }
+        }
     }
 
 }

@@ -11,9 +11,9 @@
     <string name="photo_hint">Introduza uma fotografia do teste</string>
     <string name="date_hint">dd/mm/yyyy</string>
     <string name="submit">SUBMETER</string>
-    <string name="invalid_date">Por favor introduza uma data válida</string>
-    <string name="invalid_result">Por favor introduza um resultado válido</string>
-    <string name="invalid_local">Por favor introduza um local válido</string>
+    <string name="invalid_result">Por favor escolha um resultado</string>
+    <string name="invalid_local">Por favor insira uma localização válida</string>
+    <string name="invalid_local_result">Insira um resultado e uma localização válida</string>
     <string name="test">Teste</string>
     <string name="dashboard">Dashboard</string>
     <string name="register_test">Registo de Testes</string>
@@ -32,4 +32,7 @@
     <string name="sort">Ordene por data de registo:</string>
     <string name="descending">Descendente</string>
     <string name="ascending">Ascendente</string>
+    <string name="dialogTitle">Registo de Teste</string>
+    <string name="dialogMessage">Tem a certeza que pretende registar este Teste?</string>
+    <string name="cancel">Cancelar</string>
 </resources>
