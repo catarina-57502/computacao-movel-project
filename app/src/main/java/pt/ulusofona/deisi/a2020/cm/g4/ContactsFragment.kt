@@ -8,12 +8,17 @@ import android.view.ViewGroup
 
 class ContactsFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contacts, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+       val view = inflater.inflate(R.layout.fragment_contacts, container, false)
+
+        if(!screenRotated(savedInstanceState)){
+            NavigationManager.goToTelephoneContactsFragment(fragmentManager!!)
+        }
+
+        return view
     }
 
+    private fun screenRotated(savedInstanceState: Bundle?) : Boolean{
+        return savedInstanceState != null
+    }
 }

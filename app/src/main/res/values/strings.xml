@@ -41,4 +41,6 @@
     <string name="hospitalized_uci">Hospitalized UCI</string>
     <string name="age">Confirmed Cases by sex and age group</string>
     <string name="rt">National R(t)</string>
+    <string name="contacts_tele">Telephone Contacts</string>
+    <string name="contacts_digital">Digital Contacts</string>
 </resources>

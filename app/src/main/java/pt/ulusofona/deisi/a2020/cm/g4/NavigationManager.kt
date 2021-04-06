@@ -15,6 +15,15 @@ class NavigationManager {
             transition.commit()
         }
 
+        fun goToDigitalContactsFragment(fm: FragmentManager){
+            placeFragment(fm, DigitalContactsFragment(), null)
+
+        }
+
+        fun goToTelephoneContactsFragment(fm: FragmentManager){
+            placeFragment(fm, TelephoneContactsFragment(), null)
+
+        }
 
          fun goToDashboardFragment(fm: FragmentManager){
             placeFragment(fm, DashboardFragment(), null)

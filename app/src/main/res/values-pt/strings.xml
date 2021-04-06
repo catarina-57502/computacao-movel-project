@@ -42,4 +42,6 @@
     <string name="hospitalized_uci">Internados UCI</string>
     <string name="age">Casos Confirmados por sexo e faixa etária</string>
     <string name="rt">R(t) Nacional</string>
+    <string name="contacts_tele">Contactos Telefónicos</string>
+    <string name="contacts_digital">Contactos Digitais</string>
 </resources>

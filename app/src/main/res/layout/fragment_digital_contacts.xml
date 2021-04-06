@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DigitalContactsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/telephone_tab"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:text="@string/contacts_tele"
+                android:background="@color/blue"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/digital_tab"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:text="@string/contacts_digital"
+                android:background="@color/blue"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Plataforma da DGS para esclarecimentos sobre a COVID-19"
+            />
+
+        <TextView
+            android:id="@+id/site1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/blue"
+            android:text="covid19.min-saude.pt"
+            android:clickable="true"
+            android:focusable="true"
+            android:tag="https://covid19.min-saude.pt/"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Canal SNS 24 para esclarecimentos de dúvidas. Não utilizar para diagnóstico médico."
+            />
+
+        <TextView
+            android:id="@+id/mail1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/blue"
+            android:text="atendimento@SNS24.gov.pt"
+            android:clickable="true"
+            android:focusable="true"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Gabinete de Emergência Consular"
+            />
+
+        <TextView
+            android:id="@+id/mail2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/blue"
+            android:text="gec@mne.pt"
+            android:clickable="true"
+            android:focusable="true"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Área do Diário da República Eletrónico dedicada à legislação relativa à pandemia"
+            />
+
+        <TextView
+            android:id="@+id/site2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            android:textColor="@color/blue"
+            android:text="Legislação COVID19"
+            android:clickable="true"
+            android:focusable="true"
+            android:tag="https://dre.pt/legislacao-covid-19"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
