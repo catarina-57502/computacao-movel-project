@@ -138,7 +138,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:hint="@string/local_hint"
-                android:inputType="textEmailAddress"/>
+                android:inputType="text"/>
 
             <TextView
                 android:id="@+id/photo"

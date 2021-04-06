@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
         setupDrawerMenu()
         if(!screenRotated(savedInstanceState)){
-            NavigationManager.goToTestRegisterFragment(supportFragmentManager)
+            NavigationManager.goToDashboardFragment(supportFragmentManager)
         }
-    }
 
+    }
     private fun screenRotated(savedInstanceState: Bundle?) : Boolean{
         return savedInstanceState != null
     }
@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_register -> NavigationManager.goToTestRegisterFragment(supportFragmentManager)
             R.id.nav_list -> NavigationManager.goToTestListFragment(supportFragmentManager, bundle)
             R.id.nav_vaccination -> NavigationManager.goToVaccinationFragment(supportFragmentManager)
+            R.id.nav_contacts -> NavigationManager.goToContactsFragment(supportFragmentManager)
         }
         drawer.closeDrawer(GravityCompat.START)
         return true

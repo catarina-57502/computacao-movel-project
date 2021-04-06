@@ -35,4 +35,11 @@
     <string name="dialogTitle">Registo de Teste</string>
     <string name="dialogMessage">Tem a certeza que pretende registar este Teste?</string>
     <string name="cancel">Cancelar</string>
+    <string name="confirmed">Casos Confirmados</string>
+    <string name="death">Óbitos</string>
+    <string name="recovered">Recuperados</string>
+    <string name="hospitalized">Internados</string>
+    <string name="hospitalized_uci">Internados UCI</string>
+    <string name="age">Casos Confirmados por sexo e faixa etária</string>
+    <string name="rt">R(t) Nacional</string>
 </resources>

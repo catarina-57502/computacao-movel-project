@@ -34,4 +34,11 @@
     <string name="dialogTitle">Test Register</string>
     <string name="dialogMessage">Are you sure you want to register this Test?</string>
     <string name="cancel">Cancel</string>
+    <string name="confirmed">Confirmed Cases</string>
+    <string name="death">Deaths</string>
+    <string name="recovered">Recovered</string>
+    <string name="hospitalized">Hospitalized</string>
+    <string name="hospitalized_uci">Hospitalized UCI</string>
+    <string name="age">Confirmed Cases by sex and age group</string>
+    <string name="rt">National R(t)</string>
 </resources>

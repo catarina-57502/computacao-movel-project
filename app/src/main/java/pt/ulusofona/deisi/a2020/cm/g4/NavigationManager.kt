@@ -20,12 +20,10 @@ class NavigationManager {
             placeFragment(fm, DashboardFragment(), null)
 
         }
- /*
-        fun goToContactsFragment(fm: FragmentManager, bundle: Bundle?){
-            placeFragment(fm, ContactsFragment(), bundle)
+        fun goToContactsFragment(fm: FragmentManager){
+            placeFragment(fm, ContactsFragment(), null)
 
         }
-         */
 
         fun goToVaccinationFragment(fm: FragmentManager){
             placeFragment(fm, VaccinationFragment(), null)
