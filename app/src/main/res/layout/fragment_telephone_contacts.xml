@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".TelephoneContactsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -22,7 +23,8 @@
 
             <Button
                 android:id="@+id/telephone_tab"
-                android:layout_width="210dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/contacts_tele"
                 android:background="@color/blue"
@@ -30,7 +32,8 @@
 
             <Button
                 android:id="@+id/digital_tab"
-                android:layout_width="210dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/contacts_digital"
                 android:background="@color/blue"
@@ -40,10 +43,60 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="3dp"
+            card_view:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/ic_location"
+                    android:layout_marginTop="35dp"
+                    />
+
+
+                <TextView
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/danger"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="40dp"/>
+
+                <io.github.dvegasa.arcpointer.ArcPointer
+                    android:layout_weight="7"
+                    android:id="@+id/arcpointer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    app:radius="85dp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="match_parent"
@@ -119,9 +172,12 @@
             android:clickable="true"
             android:focusable="true"
             android:text="+351 961706472"
+            android:layout_marginBottom="30dp"
             android:tag="+351961706472"
             android:textSize="17sp"/>
 
     </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

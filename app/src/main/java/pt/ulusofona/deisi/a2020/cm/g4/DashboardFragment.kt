@@ -15,7 +15,6 @@ import org.eazegraph.lib.models.BarModel
 import org.eazegraph.lib.models.StackedBarModel
 import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
 
-
 class DashboardFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -27,7 +26,7 @@ class DashboardFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
-        arcPointer.value = 0.25f
+        arcPointer.value = current_level
         arcPointer.setNotches(3)
         val cores = listOf(Color.GREEN, Color.YELLOW, Color.RED)
         arcPointer.setNotchesColors(cores.toIntArray())
@@ -38,9 +37,15 @@ class DashboardFragment : Fragment() {
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
 
-        confirmados_api.text = DataSource().confirmados.toString()
-        obitos_api.text = DataSource().obitos.toString()
-        recuperados_api.text = DataSource().recuperados.toString()
+        if(current_level==0.75f){
+            current_level = danger_levels.get(0)
+        }else{
+            current_level = danger_levels.get(danger_levels.indexOf(current_level)+1)
+        }
+
+        confirmados_api.text = truncateNumber(DataSource().confirmados.toFloat()).toString()
+        obitos_api.text = truncateNumber(DataSource().obitos.toFloat()).toString()
+        recuperados_api.text = truncateNumber(DataSource().recuperados.toFloat()).toString()
         internados_api.text = DataSource().internados.toString()
         internados_uci_api.text = DataSource().internados_uci.toString()
 
@@ -113,6 +118,31 @@ class DashboardFragment : Fragment() {
 
         rt_text.text = resources.getString(R.string.rt) + " = " + DataSource().rt_nacional
 
+    }
+
+    fun truncateNumber(floatNumber: Float): String? {
+        val thousand = 1000L
+        val million = 1000000L
+        val billion = 1000000000L
+        val trillion = 1000000000000L
+        val number = Math.round(floatNumber).toLong()
+        if(number<million){
+            val fraction = calculateFraction(number, thousand)
+            return java.lang.Float.toString(fraction) + "m"
+        }
+        if (number >= million && number < billion) {
+            val fraction = calculateFraction(number, million)
+            return java.lang.Float.toString(fraction) + "M"
+        } else if (number >= billion && number < trillion) {
+            val fraction = calculateFraction(number, billion)
+            return java.lang.Float.toString(fraction) + "B"
+        }
+        return java.lang.Long.toString(number)
+    }
+
+    fun calculateFraction(number: Long, divisor: Long): Float {
+        val truncate = (number * 10L + divisor / 2L) / divisor
+        return truncate.toFloat() * 0.10f
     }
 
 }

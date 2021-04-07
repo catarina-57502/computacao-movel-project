@@ -65,7 +65,7 @@ class TestRegisterFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
-        arcPointer.value = 0.25f
+        arcPointer.value = current_level
         arcPointer.setNotches(3)
         val cores = listOf(GREEN, YELLOW, RED)
         arcPointer.setNotchesColors(cores.toIntArray())
@@ -75,6 +75,13 @@ class TestRegisterFragment : Fragment() {
         arcPointer.setLineLengthRatio(0.7f)
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
+
+        if(current_level==0.75f){
+            current_level = danger_levels.get(0)
+        }else{
+            current_level = danger_levels.get(danger_levels.indexOf(current_level)+1)
+        }
+
     }
 
 

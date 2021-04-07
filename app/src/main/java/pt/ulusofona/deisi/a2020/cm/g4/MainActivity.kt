@@ -12,6 +12,12 @@ import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
 
 const val EXTRA_TEST = "pt.ulusofona.deisi.a2020.cm.g4.TEST"
 
+var current_level = 0.25f
+
+var danger_levels = listOf<Float>(0.25f, 0.5f, 0.75f)
+
+var count = 0
+
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val TAG = MainActivity::class.java.simpleName
