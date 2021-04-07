@@ -44,4 +44,14 @@
     <string name="rt">R(t) Nacional</string>
     <string name="contacts_tele">Contactos Telefónicos</string>
     <string name="contacts_digital">Contactos Digitais</string>
+    <string name="gec">Gabinete de Emergência Consular</string>
+    <string name="ss">Linha Segurança Social para esclarecimentos sobre assistência à família, subsidio de doença e quarentena</string>
+    <string name="sns">Linha SNS 24 para triagem de sintomas e esclarecimento de dúvidas sobre COVID-19</string>
+    <string name="dgs">Plataforma da DGS para esclarecimentos sobre a COVID-19</string>
+    <string name="sns_duvidas">Canal SNS 24 para esclarecimentos de dúvidas. Não utilizar para diagnóstico médico</string>
+    <string name="legislacao">Área do Diário da República Eletrónico dedicada à legislação relativa à pandemia</string>
+    <string name="legislacao_site">Legislação COVID19</string>
+    <string name="regiao">Casos Confirmados por região</string>
+    <string name="ars">Região</string>
+    <string name="cases_conf">Casos Confirmados</string>
 </resources>

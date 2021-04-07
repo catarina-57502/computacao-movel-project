@@ -44,6 +44,14 @@ class DashboardFragment : Fragment() {
         internados_api.text = DataSource().internados.toString()
         internados_uci_api.text = DataSource().internados_uci.toString()
 
+        norte_api.text = DataSource().confirmados_arsnorte.toString()
+        centro_api.text = DataSource().confirmados_arscentro.toString()
+        lvt_api.text = DataSource().confirmados_arslvt.toString()
+        alentejo_api.text = DataSource().confirmados_arsalentejo.toString()
+        algarve_api.text = DataSource().confirmados_arsalgarve.toString()
+        acores_api.text = DataSource().confirmados_acores.toString()
+        madeira_api.text = DataSource().confirmados_madeira.toString()
+
         val mStackedBarChart: StackedBarChart = getView()!!.findViewById(R.id.stackedbarchart) as StackedBarChart
 
         val conf_0_9= StackedBarModel("0-9")

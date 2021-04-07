@@ -49,8 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Linha SNS 24 para triagem de sintomas e esclarecimento de dúvidas sobre COVID-19"
-            />
+            android:text="@string/sns"
+            android:textSize="17sp"/>
 
         <TextView
             android:id="@+id/number1"
@@ -64,14 +64,14 @@
             android:focusable="true"
             android:text="+351 808 24 24 24"
             android:tag="+351808242424"
-            />
+            android:textSize="17sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Linha Segurança Social para esclarecimentos sobre assistência à família, subsidio de doença e quarentena"
-            />
+            android:text="@string/ss"
+            android:textSize="17sp"/>
 
         <TextView
             android:id="@+id/number2"
@@ -85,14 +85,14 @@
             android:focusable="true"
             android:text="+351 300 502 502"
             android:tag="+351300502502"
-            />
+            android:textSize="17sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Gabinete de Emergência Consular"
-            />
+            android:text="@string/gec"
+            android:textSize="17sp"/>
 
         <TextView
             android:id="@+id/number3"
@@ -106,7 +106,7 @@
             android:focusable="true"
             android:text="+351 217929714"
             android:tag="+351217929714"
-            />
+            android:textSize="17sp"/>
 
         <TextView
             android:id="@+id/number4"
@@ -120,7 +120,7 @@
             android:focusable="true"
             android:text="+351 961706472"
             android:tag="+351961706472"
-        />
+            android:textSize="17sp"/>
 
     </LinearLayout>
 

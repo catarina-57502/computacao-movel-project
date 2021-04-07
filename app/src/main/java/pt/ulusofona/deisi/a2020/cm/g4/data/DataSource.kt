@@ -1,5 +1,10 @@
 package pt.ulusofona.deisi.a2020.cm.g4.data
 import pt.ulusofona.deisi.a2020.cm.g4.Test
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DataSource{
 
@@ -8,6 +13,8 @@ class DataSource{
     }
 
     /*******************************DASHBOARD*************************************/
+
+    var data = SimpleDateFormat("dd-MM-yyyy").format(Date())
 
     var confirmados = 823335
     var obitos = 16879
@@ -33,6 +40,14 @@ class DataSource{
     var confirmados_70_79_m = 899
     var confirmados_80_plus_f = 70
     var confirmados_80_plus_m = 120
+
+    var confirmados_arsnorte = 331422
+    var confirmados_arscentro = 117460
+    var confirmados_arslvt = 312537
+    var confirmados_arsalentejo = 29229
+    var confirmados_arsalgarve = 20880
+    var confirmados_acores = 4125
+    var confirmados_madeira = 8715
 
     var rt_nacional = 0.98
 

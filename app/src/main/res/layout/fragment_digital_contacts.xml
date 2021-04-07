@@ -50,7 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Plataforma da DGS para esclarecimentos sobre a COVID-19"
+            android:text="@string/dgs"
+            android:textSize="17sp"
             />
 
         <TextView
@@ -65,14 +66,15 @@
             android:clickable="true"
             android:focusable="true"
             android:tag="https://covid19.min-saude.pt/"
+            android:textSize="17sp"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Canal SNS 24 para esclarecimentos de dúvidas. Não utilizar para diagnóstico médico."
-            />
+            android:text="@string/sns_duvidas"
+            android:textSize="17sp"/>
 
         <TextView
             android:id="@+id/mail1"
@@ -85,14 +87,14 @@
             android:text="atendimento@SNS24.gov.pt"
             android:clickable="true"
             android:focusable="true"
-            />
+            android:textSize="17sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Gabinete de Emergência Consular"
-            />
+            android:text="@string/gec"
+            android:textSize="17sp"/>
 
         <TextView
             android:id="@+id/mail2"
@@ -105,14 +107,14 @@
             android:text="gec@mne.pt"
             android:clickable="true"
             android:focusable="true"
-            />
+            android:textSize="17sp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Área do Diário da República Eletrónico dedicada à legislação relativa à pandemia"
-            />
+            android:text="@string/legislacao"
+            android:textSize="17sp"/>
 
         <TextView
             android:id="@+id/site2"
@@ -122,11 +124,11 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="3dp"
             android:textColor="@color/blue"
-            android:text="Legislação COVID19"
+            android:text="@string/legislacao_site"
             android:clickable="true"
             android:focusable="true"
             android:tag="https://dre.pt/legislacao-covid-19"
-            />
+            android:textSize="17sp"/>
 
     </LinearLayout>
 

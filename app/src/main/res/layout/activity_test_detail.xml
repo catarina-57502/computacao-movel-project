@@ -80,9 +80,9 @@
         />
 
     <ImageView
-        android:layout_width="286dp"
-        android:layout_height="190dp"
-        android:layout_marginLeft="60dp"
+        android:layout_width="380dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:src="@drawable/photo" />
 

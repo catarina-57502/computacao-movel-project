@@ -43,4 +43,14 @@
     <string name="rt">National R(t)</string>
     <string name="contacts_tele">Telephone Contacts</string>
     <string name="contacts_digital">Digital Contacts</string>
+    <string name="gec">Consular Emergency Office</string>
+    <string name="ss">Social Security Line for clarifications on family assistance, sickness benefits and quarantine</string>
+    <string name="sns">SNS 24 Line for screening symptoms and clarifying doubts about COVID-19</string>
+    <string name="dgs">DGS platform for clarification on COVID-19</string>
+    <string name="sns_duvidas">SNS 24 channel for clarification of doubts. Do not use for medical diagnosis</string>
+    <string name="legislacao">Electronic Journal Area dedicated to pandemic legislation</string>
+    <string name="legislacao_site">COVID19 Legislation</string>
+    <string name="regiao">Confirmed Cases by region</string>
+    <string name="ars">Region</string>
+    <string name="cases_conf">Confirmed Cases</string>
 </resources>
