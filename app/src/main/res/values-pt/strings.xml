@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">COVID Buddy</string>
-    <string name="date">Datq</string>
-    <string name="result">Resultada</string>
+    <string name="date">Data</string>
+    <string name="result">Resultado</string>
     <string name="positive">Positivo</string>
     <string name="negative">Negativo</string>
     <string name="local">Local</string>
