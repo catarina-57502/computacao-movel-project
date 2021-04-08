@@ -68,7 +68,6 @@
         android:text="@string/total_doses"
         android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
-        android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -133,7 +132,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:text="@string/total_doses1"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -143,7 +141,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/total_doses2"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"/>
 

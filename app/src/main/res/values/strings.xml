@@ -13,7 +13,7 @@
     <string name="invalid_result">Please choose a Result</string>
     <string name="invalid_local">Please enter a valid Location</string>
     <string name="invalid_local_result">Result and Location must be valid</string>
-    <string name="test">Test</string>
+    <string name="test">COVID-19 Test</string>
     <string name="dashboard">Dashboard</string>
     <string name="register_test">Test Register</string>
     <string name="list_test">Test Listing</string>
@@ -39,7 +39,6 @@
     <string name="recovered">Recovered</string>
     <string name="hospitalized">Hospitalized</string>
     <string name="hospitalized_uci">Hospitalized UCI</string>
-    <string name="age">Confirmed Cases by sex and age group</string>
     <string name="rt">National R(t)</string>
     <string name="contacts_tele">Telephone Contacts</string>
     <string name="contacts_digital">Digital Contacts</string>
@@ -50,7 +49,8 @@
     <string name="sns_duvidas">SNS 24 channel for clarification of doubts. Do not use for medical diagnosis</string>
     <string name="legislacao">Electronic Journal Area dedicated to pandemic legislation</string>
     <string name="legislacao_site">COVID19 Legislation</string>
-    <string name="regiao">Confirmed Cases by region</string>
+    <string name="regiao">Confirmed Cases by Region</string>
     <string name="ars">Region</string>
     <string name="cases_conf">Confirmed Cases</string>
+    <string name="date_reg">Registration date:</string>
 </resources>
