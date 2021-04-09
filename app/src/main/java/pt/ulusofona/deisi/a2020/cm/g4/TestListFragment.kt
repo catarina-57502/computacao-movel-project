@@ -31,6 +31,7 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, Adapte
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_test_list, container, false)
         ButterKnife.bind(this, view)
+        //DataSource.tests.add(Test("01.03.2021", "Negative", "Hospital CUF Sintra", "", "16.03.2021"))
         return view
     }
 
