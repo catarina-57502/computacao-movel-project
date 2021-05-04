@@ -1,14 +1,19 @@
 package pt.ulusofona.deisi.a2020.cm.g4
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.BatteryManager
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
+
 
 const val EXTRA_TEST = "pt.ulusofona.deisi.a2020.cm.g4.TEST"
 
@@ -32,6 +37,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             NavigationManager.goToDashboardFragment(supportFragmentManager)
         }
 
+        val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
+            this.registerReceiver(null, ifilter)
+        }
+        val batteryPct: Float? = batteryStatus?.let { intent ->
+            val level: Int = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
+            val scale: Int = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
+            level * 100 / scale.toFloat()
+        }
+
+        if(batteryPct!=null){
+            if(batteryPct<20.0){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                delegate.applyDayNight()
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                delegate.applyDayNight()
+            }
+        }
     }
     private fun screenRotated(savedInstanceState: Bundle?) : Boolean{
         return savedInstanceState != null
