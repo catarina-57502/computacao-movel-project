@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
 package="pt.ulusofona.deisi.a2020.cm.g4">
 
+<uses-feature android:name="android.hardware.camera"
+    android:required="true" />
+
 <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
@@ -8,7 +11,7 @@ package="pt.ulusofona.deisi.a2020.cm.g4">
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".TestDetailActivity"
+    <activity android:name=".ui.activities.TestDetailActivity"
         android:parentActivityName=".TestListActivity">
     </activity>
     <activity android:name=".TestListActivity" />
@@ -17,7 +20,7 @@ package="pt.ulusofona.deisi.a2020.cm.g4">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <activity android:name=".MainActivity">
+    <activity android:name=".ui.activities.MainActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 

@@ -1,11 +1,5 @@
 package pt.ulusofona.deisi.a2020.cm.g4.data
-import pt.ulusofona.deisi.a2020.cm.g4.Test
-import pt.ulusofona.deisi.a2020.cm.g4.current_level
-import pt.ulusofona.deisi.a2020.cm.g4.danger_levels
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
+import pt.ulusofona.deisi.a2020.cm.g4.domain.test.Test
 import kotlin.collections.ArrayList
 
 class DataSource{

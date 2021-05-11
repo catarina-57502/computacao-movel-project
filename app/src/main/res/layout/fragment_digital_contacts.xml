@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DigitalContactsFragment">
+    tools:context=".ui.fragments.DigitalContactsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"

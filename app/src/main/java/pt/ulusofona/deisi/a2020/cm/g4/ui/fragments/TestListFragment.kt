@@ -1,4 +1,4 @@
-package pt.ulusofona.deisi.a2020.cm.g4
+package pt.ulusofona.deisi.a2020.cm.g4.ui.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -11,13 +11,19 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_test_list.*
+import pt.ulusofona.deisi.a2020.cm.g4.R
+import pt.ulusofona.deisi.a2020.cm.g4.domain.test.Test
 import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.EXTRA_TEST
+import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.TestDetailActivity
+import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
+import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
+import pt.ulusofona.deisi.a2020.cm.g4.ui.adapters.TestAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -31,7 +37,6 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, Adapte
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_test_list, container, false)
         ButterKnife.bind(this, view)
-        DataSource.tests.add(Test("01.03.2021", "Negative", "Hospital CUF Sintra", "", "16.03.2021"))
         return view
     }
 
@@ -50,13 +55,27 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, Adapte
             lista!!.clear()
             lista!!.addAll(result)
             list_test.layoutManager = LinearLayoutManager(activity as Context)
-            list_test.adapter = lista?.let { TestAdapter(activity as Context, R.layout.item_test, it, this) }
+            list_test.adapter = lista?.let {
+                TestAdapter(
+                    activity as Context,
+                    R.layout.item_test,
+                    it,
+                    this
+                )
+            }
         }else{
             result = DataSource.tests.sortedBy { it.dateReg.toDate() }
             lista!!.clear()
             lista!!.addAll(result)
             list_test.layoutManager = LinearLayoutManager(activity as Context)
-            list_test.adapter = lista?.let { TestAdapter(activity as Context, R.layout.item_test, it, this) }
+            list_test.adapter = lista?.let {
+                TestAdapter(
+                    activity as Context,
+                    R.layout.item_test,
+                    it,
+                    this
+                )
+            }
         }
     }
 
@@ -68,10 +87,18 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, Adapte
         super.onStart()
 
         list_test.layoutManager = LinearLayoutManager(activity as Context)
-        list_test.adapter = lista?.let { TestAdapter(activity as Context, R.layout.item_test, it, this) }
+        list_test.adapter = lista?.let {
+            TestAdapter(
+                activity as Context,
+                R.layout.item_test,
+                it,
+                this
+            )
+        }
 
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
-        arcPointer.value = current_level
+        arcPointer.value =
+            current_level
         arcPointer.setNotches(3)
         val cores = listOf(Color.GREEN, Color.YELLOW, Color.RED)
         arcPointer.setNotchesColors(cores.toIntArray())
@@ -82,17 +109,21 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, Adapte
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
 
-        if(current_level==0.75f){
+        if(current_level ==0.75f){
             current_level = danger_levels.get(0)
         }else{
-            current_level = danger_levels.get(danger_levels.indexOf(current_level)+1)
+            current_level = danger_levels.get(
+                danger_levels.indexOf(
+                    current_level
+                )+1)
         }
 
         val spinner: Spinner = getView()!!.findViewById(R.id.sort_spinner)
 
         val adapter = ArrayAdapter.createFromResource(
             activity as Context,
-           R.array.sort_array, R.layout.item_sort
+            R.array.sort_array,
+            R.layout.item_sort
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter

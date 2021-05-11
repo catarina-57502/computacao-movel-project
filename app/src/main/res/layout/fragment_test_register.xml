@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".TestRegisterFragment">
+    tools:context=".ui.fragments.TestRegisterFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -141,26 +141,41 @@
                 android:hint="@string/local_hint"
                 android:inputType="text"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btnTakePic"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_photo"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="3dp"
+                android:layout_marginTop="30dp"
+                />
+
             <TextView
-                android:id="@+id/photo"
+                android:id="@+id/photo_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/photo"
                 android:layout_marginTop="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="3dp"
                 android:textSize="20sp"
                 />
 
-            <EditText
-                android:id="@+id/photo_input"
+        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:hint="@string/photo_hint"
-                android:inputType="text"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
 
             <Button
                 android:id="@+id/submit"

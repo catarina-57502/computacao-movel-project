@@ -1,4 +1,4 @@
-package pt.ulusofona.deisi.a2020.cm.g4
+package pt.ulusofona.deisi.a2020.cm.g4.ui.fragments
 
 import android.content.Intent
 import android.graphics.Color
@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_vaccination.*
+import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
 
 class VaccinationFragment : Fragment() {

@@ -1,4 +1,4 @@
-package pt.ulusofona.deisi.a2020.cm.g4
+package pt.ulusofona.deisi.a2020.cm.g4.domain.test
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

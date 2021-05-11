@@ -1,4 +1,4 @@
-package pt.ulusofona.deisi.a2020.cm.g4
+package pt.ulusofona.deisi.a2020.cm.g4.ui.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import butterknife.ButterKnife
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import pt.ulusofona.deisi.a2020.cm.g4.R
+import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
+import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
 import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
 
 class DashboardFragment : Fragment() {
@@ -22,7 +25,8 @@ class DashboardFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
-        arcPointer.value = current_level
+        arcPointer.value =
+            current_level
         arcPointer.setNotches(3)
         val cores = listOf(Color.GREEN, Color.YELLOW, Color.RED)
         arcPointer.setNotchesColors(cores.toIntArray())
@@ -33,10 +37,13 @@ class DashboardFragment : Fragment() {
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
 
-        if(current_level==0.75f){
+        if(current_level ==0.75f){
             current_level = danger_levels.get(0)
         }else{
-            current_level = danger_levels.get(danger_levels.indexOf(current_level)+1)
+            current_level = danger_levels.get(
+                danger_levels.indexOf(
+                    current_level
+                )+1)
         }
 
         confirmados_api.text = casasMilhares(DataSource().list_datas[1].confirmados.toString())

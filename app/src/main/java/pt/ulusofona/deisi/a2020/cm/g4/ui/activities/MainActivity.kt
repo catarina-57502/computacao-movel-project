@@ -1,4 +1,4 @@
-package pt.ulusofona.deisi.a2020.cm.g4
+package pt.ulusofona.deisi.a2020.cm.g4.ui.activities
 
 import android.content.Intent
 import android.content.IntentFilter
@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import pt.ulusofona.deisi.a2020.cm.g4.ui.utils.NavigationManager
+import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
 
 

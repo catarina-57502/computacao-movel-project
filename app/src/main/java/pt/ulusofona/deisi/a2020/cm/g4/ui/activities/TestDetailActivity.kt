@@ -1,10 +1,11 @@
-package pt.ulusofona.deisi.a2020.cm.g4
+package pt.ulusofona.deisi.a2020.cm.g4.ui.activities
 
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.activity_test_detail.*
+import pt.ulusofona.deisi.a2020.cm.g4.R
 
 
 private val TAG = TestDetailActivity::class.java.simpleName
@@ -31,7 +32,8 @@ class TestDetailActivity : AppCompatActivity() {
         detail_local.text = getIntent().getStringExtra("TESTLOCAL")
 
         val arcPointer: ArcPointer = findViewById(R.id.arcpointer)
-        arcPointer.value = current_level
+        arcPointer.value =
+            current_level
         arcPointer.setNotches(3)
         val cores = listOf(Color.GREEN, Color.YELLOW, Color.RED)
         arcPointer.setNotchesColors(cores.toIntArray())
@@ -42,10 +44,13 @@ class TestDetailActivity : AppCompatActivity() {
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
 
-        if(current_level==0.75f){
+        if(current_level ==0.75f){
             current_level = danger_levels.get(0)
         }else{
-            current_level = danger_levels.get(danger_levels.indexOf(current_level)+1)
+            current_level = danger_levels.get(
+                danger_levels.indexOf(
+                    current_level
+                )+1)
         }
 
     }
