@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_test_list.*
+import kotlinx.android.synthetic.main.item_test.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.domain.test.Test
 import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
@@ -128,7 +129,6 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, Adapte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
         spinner.onItemSelectedListener = this
-
     }
 
 
