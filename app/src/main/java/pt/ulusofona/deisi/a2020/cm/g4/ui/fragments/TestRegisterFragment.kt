@@ -1,38 +1,39 @@
 package pt.ulusofona.deisi.a2020.cm.g4.ui.fragments
 
-import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color.*
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import butterknife.ButterKnife
 import butterknife.OnClick
 import io.github.dvegasa.arcpointer.ArcPointer
-import kotlinx.android.synthetic.main.drawer_header.*
 import kotlinx.android.synthetic.main.fragment_test_register.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
 import pt.ulusofona.deisi.a2020.cm.g4.domain.test.Test
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-val REQUEST_IMAGE_CAPTURE = 1
+private const val FILE_NAME = "photo"
+private const val REQUEST_CODE = 42
+private lateinit var photoFile: File
 class TestRegisterFragment : Fragment() {
 
     private val TAG = TestRegisterFragment::class.java.simpleName
@@ -98,23 +99,31 @@ class TestRegisterFragment : Fragment() {
         }
         btnTakePic.setOnClickListener{
             val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            try {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-            } catch (e: ActivityNotFoundException) {
+            photoFile = getPhotoFile(FILE_NAME)
+            val fileProvider = FileProvider.getUriForFile(activity as Context, "pt.ulusofona.deisi.a2020.cm.g4.fileprovider", photoFile)
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
+            if (takePictureIntent.resolveActivity(context?.packageManager) != null) {
+                startActivityForResult(takePictureIntent, REQUEST_CODE)
+            } else {
                 Toast.makeText(activity as Context, "Unable to open camera", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            image_view.layoutParams.height = 960
-            image_view.layoutParams.width = 960
-            image_view.setImageBitmap(imageBitmap)
-        }
+    private fun getPhotoFile(fileName: String): File {
+        val storageDirectory = context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(fileName, ".jpg", storageDirectory)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_CODE) {
+            val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
+            image_view.setImageBitmap(takenImage)
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+
+    }
 
 
     @OnClick(R.id.submit)
@@ -147,7 +156,7 @@ class TestRegisterFragment : Fragment() {
                             date_input.text.toString(),
                             result.text.toString(),
                             local_input.text.toString(),
-                            "",
+                            photoFile,
                             SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(
                                 Calendar.getInstance().time
                             )

@@ -29,6 +29,10 @@
             android:textSize="0sp"
             android:textColor="@color/white"
             />
+      <ImageView
+          android:id="@+id/text_image_view"
+          android:layout_width="0dp"
+          android:layout_height="0dp" />
         <TextView
             android:id="@+id/text_result"
             android:layout_width="match_parent"

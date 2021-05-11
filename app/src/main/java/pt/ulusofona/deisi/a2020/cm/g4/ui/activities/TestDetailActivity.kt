@@ -1,5 +1,6 @@
 package pt.ulusofona.deisi.a2020.cm.g4.ui.activities
 
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,7 @@ class TestDetailActivity : AppCompatActivity() {
         detail_date.text = getIntent().getStringExtra("TESTDATE")
         detail_result.text = getIntent().getStringExtra("TESTRESULT")
         detail_local.text = getIntent().getStringExtra("TESTLOCAL")
+        detail_photo.setImageBitmap(BitmapFactory.decodeFile(getIntent().getStringExtra("TESTIMAGE")))
 
         val arcPointer: ArcPointer = findViewById(R.id.arcpointer)
         arcPointer.value =
