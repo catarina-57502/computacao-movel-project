@@ -135,7 +135,7 @@ class TestListFragment : Fragment(), TestAdapter.onTestItemClickListener, Adapte
     override fun onItemClick(item: Test, position: Int) {
         Log.i(TAG, "Click no Card $position")
         val intent = Intent(activity as Context, TestDetailActivity::class.java)
-        intent.apply { putExtra("TESTDATE", item.date); putExtra("TESTRESULT", item.result); putExtra("TESTLOCAL", item.local); putExtra("TESTIMAGE", item.image.absolutePath) }
+        intent.apply { putExtra("TESTDATE", item.date); putExtra("TESTRESULT", item.result); putExtra("TESTLOCAL", item.local); putExtra("TESTIMAGE", item.image?.absolutePath) }
         startActivity(intent)
     }
 

@@ -30,7 +30,7 @@ class TestAdapter(private val context: Context, private val layout: Int, private
             result.text = item.result
             local.text = item.local
             dateReg.text = item.dateReg
-            image.setImageBitmap(BitmapFactory.decodeFile(item.image.absolutePath))
+            image.setImageBitmap(BitmapFactory.decodeFile(item.image?.absolutePath))
 
             if(item.result=="Positive"){
                 text.setTextColor(Color.RED)

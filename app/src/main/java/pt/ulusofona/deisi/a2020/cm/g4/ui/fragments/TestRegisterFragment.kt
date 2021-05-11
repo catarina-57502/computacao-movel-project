@@ -150,18 +150,34 @@ class TestRegisterFragment : Fragment() {
                 builder.setMessage(R.string.dialogMessage)
                 builder.setIcon(R.drawable.ic_submit)
 
-                builder.setPositiveButton(resources.getString(R.string.submit)){ dialogInterface, which ->
-                    DataSource.tests.add(
-                        Test(
-                            date_input.text.toString(),
-                            result.text.toString(),
-                            local_input.text.toString(),
-                            photoFile,
-                            SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(
-                                Calendar.getInstance().time
+                if(::photoFile.isInitialized) {
+                    builder.setPositiveButton(resources.getString(R.string.submit)){ dialogInterface, which ->
+                        DataSource.tests.add(
+                            Test(
+                                date_input.text.toString(),
+                                result.text.toString(),
+                                local_input.text.toString(),
+                                photoFile,
+                                SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(
+                                    Calendar.getInstance().time
+                                )
                             )
                         )
-                    )
+                    }
+                }else{
+                    builder.setPositiveButton(resources.getString(R.string.submit)){ dialogInterface, which ->
+                        DataSource.tests.add(
+                            Test(
+                                date_input.text.toString(),
+                                result.text.toString(),
+                                local_input.text.toString(),
+                                null,
+                                SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(
+                                    Calendar.getInstance().time
+                                )
+                            )
+                        )
+                    }
                 }
                 builder.setNegativeButton(resources.getString(R.string.cancel)){ dialogInterface, which ->
                     alertDialog!!.dismiss()
