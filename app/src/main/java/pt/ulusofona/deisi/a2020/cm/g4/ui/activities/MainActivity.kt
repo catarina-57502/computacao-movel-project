@@ -14,7 +14,7 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import pt.ulusofona.deisi.a2020.cm.g4.ui.utils.NavigationManager
 import pt.ulusofona.deisi.a2020.cm.g4.R
-import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
 
 
 const val EXTRA_TEST = "pt.ulusofona.deisi.a2020.cm.g4.TEST"

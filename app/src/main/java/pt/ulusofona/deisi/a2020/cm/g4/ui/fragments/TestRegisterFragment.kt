@@ -18,15 +18,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import butterknife.ButterKnife
 import butterknife.OnClick
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_test_register.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
-import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
 import pt.ulusofona.deisi.a2020.cm.g4.domain.test.Test
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
+import pt.ulusofona.deisi.a2020.cm.g4.ui.viewmodels.DashboardViewModel
+import pt.ulusofona.deisi.a2020.cm.g4.ui.viewmodels.TestRegisterViewModel
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,6 +39,8 @@ private const val REQUEST_CODE = 42
 private lateinit var photoFile: File
 class TestRegisterFragment : Fragment() {
 
+    private lateinit var viewModel : TestRegisterViewModel
+
     private val TAG = TestRegisterFragment::class.java.simpleName
     private val DATE_KEY = "date"
     private val RESULT_KEY = "result"
@@ -43,8 +48,8 @@ class TestRegisterFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_test_register, container, false)
+        viewModel = ViewModelProviders.of(this).get(TestRegisterViewModel::class.java)
         ButterKnife.bind(this, view)
-
         return view
     }
 
@@ -102,7 +107,7 @@ class TestRegisterFragment : Fragment() {
             photoFile = getPhotoFile(FILE_NAME)
             val fileProvider = FileProvider.getUriForFile(activity as Context, "pt.ulusofona.deisi.a2020.cm.g4.fileprovider", photoFile)
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider)
-            if (takePictureIntent.resolveActivity(context?.packageManager) != null) {
+            if (context?.packageManager?.let { it1 -> takePictureIntent.resolveActivity(it1) } != null) {
                 startActivityForResult(takePictureIntent, REQUEST_CODE)
             } else {
                 Toast.makeText(activity as Context, "Unable to open camera", Toast.LENGTH_SHORT).show()

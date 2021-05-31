@@ -16,10 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_test_list.*
-import kotlinx.android.synthetic.main.item_test.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.domain.test.Test
-import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.EXTRA_TEST
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.TestDetailActivity
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level

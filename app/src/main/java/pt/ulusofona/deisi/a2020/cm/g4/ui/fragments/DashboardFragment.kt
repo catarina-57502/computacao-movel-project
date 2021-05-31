@@ -6,18 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import butterknife.ButterKnife
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
-import pt.ulusofona.deisi.a2020.cm.g4.data.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.CovidData
+import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.ReceiveDashboardListener
+import pt.ulusofona.deisi.a2020.cm.g4.ui.viewmodels.DashboardViewModel
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), ReceiveDashboardListener {
+
+    private lateinit var viewModel : DashboardViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        viewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         ButterKnife.bind(this, view)
         return view
     }
@@ -46,45 +54,52 @@ class DashboardFragment : Fragment() {
                 )+1)
         }
 
-        confirmados_api.text = casasMilhares(DataSource().list_datas[1].confirmados.toString())
-        obitos_api.text = casasMilhares(DataSource().list_datas[1].obitos.toString())
-        recuperados_api.text = casasMilhares(DataSource().list_datas[1].recuperados.toString())
-        internados_api.text = casasMilhares(DataSource().list_datas[1].internados.toString())
-        internados_uci_api.text = casasMilhares(DataSource().list_datas[1].internados_uci.toString())
+        viewModel.registerDashboardListener(this)
 
-        confirmados_novos_api.text = "+" + DataSource().confirmados_novos.toString()
-        obitos_novos_api.text = "+" + DataSource().obitos.toString()
-        recuperados_novos_api.text = "+" + DataSource().recuperados.toString()
-        if(DataSource().internados>0){
-            internados_novos_api.text = "+" + DataSource().internados.toString()
+        viewModel.getDashboard()
+
+
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        //DashboardViewModel.unregisterDashboardListener(this)
+    }
+
+    override fun onReceiveDashboard(dashboard: CovidData) {
+        confirmados_api.text = casasMilhares(dashboard.confirmados.toString())
+        obitos_api.text = casasMilhares(dashboard.obito.toString())
+        recuperados_api.text = casasMilhares(dashboard.recuperados.toString())
+        internados_api.text = casasMilhares(dashboard.internados.toString())
+        internados_uci_api.text = casasMilhares(dashboard.internados_uci.toString())
+        confirmados_novos_api.text = "+" + dashboard.confirmados_novos.toString()
+        obitos_novos_api.text = "+" + dashboard.obitos_novos.toString()
+        recuperados_novos_api.text = "+" + dashboard.recuperados_novos.toString()
+        if(dashboard.internados_novos>0){
+            internados_novos_api.text = "+" + dashboard.internados_novos.toString()
         }else{
-            internados_novos_api.text = DataSource().internados.toString()
+            internados_novos_api.text = dashboard.internados_novos.toString()
         }
 
-        if(DataSource().internados_uci>0){
-            internados_uci_novos_api.text = "+" + DataSource().internados_uci.toString()
+        if(dashboard.internados_uci_novos>0){
+            internados_uci_novos_api.text = "+" + dashboard.internados_uci_novos.toString()
         }else{
-            internados_uci_novos_api.text = DataSource().internados_uci.toString()
+            internados_uci_novos_api.text = dashboard.internados_uci_novos.toString()
         }
-
-
-        norte_api.text = "+" + DataSource().confirmados_arsnorte.toString()
-        centro_api.text = "+" + DataSource().confirmados_arscentro.toString()
-        lvt_api.text = "+" + DataSource().confirmados_arslvt.toString()
-        alentejo_api.text = "+" + DataSource().confirmados_arsalentejo.toString()
-        algarve_api.text = "+" + DataSource().confirmados_arsalgarve.toString()
-        acores_api.text = "+" + DataSource().confirmados_acores.toString()
-        madeira_api.text = "+" + DataSource().confirmados_madeira.toString()
-
-         if(DataSource().rt_nacional<=1){
-             rt_image.setImageDrawable(resources.getDrawable(R.drawable.ic_ok))
+        norte_api.text = dashboard.norte.toString()
+        centro_api.text = dashboard.centro.toString()
+        lvt_api.text = dashboard.lvt.toString()
+        alentejo_api.text = dashboard.alentejo.toString()
+        algarve_api.text = dashboard.algarve.toString()
+        acores_api.text = dashboard.acores.toString()
+        madeira_api.text = dashboard.madeira.toString()
+        if(dashboard.rt <= 1){
+            rt_image.setImageDrawable(resources.getDrawable(R.drawable.ic_ok))
         }else{
-             rt_image.setImageDrawable(resources.getDrawable(R.drawable.ic_bad))
+            rt_image.setImageDrawable(resources.getDrawable(R.drawable.ic_bad))
         }
-
-
-        rt_text.text = resources.getString(R.string.rt) + " = " + DataSource().rt_nacional
-
+        rt_text.text = resources.getString(R.string.rt) + " = " + dashboard.rt.toString()
     }
 
     fun casasMilhares(number: String) : String{
