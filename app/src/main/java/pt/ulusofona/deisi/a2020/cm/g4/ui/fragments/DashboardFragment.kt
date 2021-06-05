@@ -1,5 +1,6 @@
 package pt.ulusofona.deisi.a2020.cm.g4.ui.fragments
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.CovidData
+import pt.ulusofona.deisi.a2020.cm.g4.data.sensors.location.FusedLocation
 import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.ReceiveDashboardListener
 import pt.ulusofona.deisi.a2020.cm.g4.ui.viewmodels.DashboardViewModel
 
@@ -32,6 +34,8 @@ class DashboardFragment : Fragment(), ReceiveDashboardListener {
 
     override fun onStart() {
         super.onStart()
+        FusedLocation.start(activity as Context)
+
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
         arcPointer.value =
             current_level
