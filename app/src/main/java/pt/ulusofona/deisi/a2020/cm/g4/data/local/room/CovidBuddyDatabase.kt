@@ -9,6 +9,7 @@ import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.dao.TestDao
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.CovidData
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.Test
 
+
 @Database(entities = arrayOf(CovidData::class), version = 1)
 abstract class CovidBuddyDatabase : RoomDatabase(){
 

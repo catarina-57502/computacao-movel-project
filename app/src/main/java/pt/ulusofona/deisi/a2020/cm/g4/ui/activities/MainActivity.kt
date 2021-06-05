@@ -1,27 +1,31 @@
 package pt.ulusofona.deisi.a2020.cm.g4.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.BatteryManager
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import pt.ulusofona.deisi.a2020.cm.g4.ui.utils.NavigationManager
 import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.ui.utils.NavigationManager
 
 
 const val EXTRA_TEST = "pt.ulusofona.deisi.a2020.cm.g4.TEST"
 
-var current_level = 0.25f
+var current_level = 0.2f
 
-var danger_levels = listOf<Float>(0.25f, 0.5f, 0.75f)
+var danger_levels = listOf<Float>(0.2f, 0.4f, 0.6f, 0.8f)
 
 var count = 0
 
@@ -35,8 +39,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         setupDrawerMenu()
-        if(!screenRotated(savedInstanceState)){
+         if(!screenRotated(savedInstanceState)){
             NavigationManager.goToDashboardFragment(supportFragmentManager)
+        }
+
+        val cm = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+
+        if (!isConnected){
+            Toast.makeText(applicationContext, getString(R.string.internet), Toast.LENGTH_SHORT).show()
         }
 
         val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
@@ -57,7 +69,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 delegate.applyDayNight()
             }
         }
+
     }
+
     private fun screenRotated(savedInstanceState: Bundle?) : Boolean{
         return savedInstanceState != null
     }
@@ -92,4 +106,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             super.onBackPressed()
         }
     }
+
 }

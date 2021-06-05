@@ -53,4 +53,6 @@
     <string name="ars">Region</string>
     <string name="cases_conf">Confirmed Cases</string>
     <string name="date_reg">Registration date:</string>
+    <string name="date_update">Data updated on</string>
+    <string name="internet">No Internet connection...</string>
 </resources>

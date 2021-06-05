@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.Color.*
 import android.os.Bundle
 import android.os.Environment
@@ -84,8 +85,8 @@ class TestRegisterFragment : Fragment() {
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
         arcPointer.value =
             current_level
-        arcPointer.setNotches(3)
-        val cores = listOf(GREEN, YELLOW, RED)
+        arcPointer.setNotches(4)
+        val cores = listOf(Color.GREEN, Color.YELLOW, Color.rgb(255, 165, 0), Color.RED)
         arcPointer.setNotchesColors(cores.toIntArray())
         arcPointer.setNotchesStrokeWidth(15.0f)
         arcPointer.setAnimated(true)
@@ -94,7 +95,7 @@ class TestRegisterFragment : Fragment() {
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
 
-        if(current_level ==0.75f){
+        if(current_level ==0.8f){
             current_level = danger_levels.get(0)
         }else{
             current_level = danger_levels.get(

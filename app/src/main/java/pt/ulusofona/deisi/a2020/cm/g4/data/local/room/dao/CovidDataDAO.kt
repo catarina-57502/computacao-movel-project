@@ -19,4 +19,5 @@ interface CovidDataDAO {
 
     @Query("SELECT * FROM covidData WHERE data = :date")
     suspend fun getByDate(date:String): CovidData?
+
 }

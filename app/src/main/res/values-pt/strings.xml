@@ -54,4 +54,6 @@
     <string name="ars">Região</string>
     <string name="cases_conf">Casos Confirmados</string>
     <string name="date_reg">Data de registo:</string>
+    <string name="date_update">Dados atualizados a</string>
+    <string name="internet">Sem conexão à Internet...</string>
 </resources>

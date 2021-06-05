@@ -1,7 +1,6 @@
 package pt.ulusofona.deisi.a2020.cm.g4.data.repositories
 
 
-import com.google.gson.internal.LinkedTreeMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -298,6 +297,18 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val remote: 
 
         }
 
+
+
+    }
+
+    fun getVaccinesData(){
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+
+
+        }
 
 
     }

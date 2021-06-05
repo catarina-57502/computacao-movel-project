@@ -13,6 +13,8 @@ import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_vaccination.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
+import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
 
 class VaccinationFragment : Fragment() {
 
@@ -28,9 +30,9 @@ class VaccinationFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
-        arcPointer.value = 0.25f
-        arcPointer.setNotches(3)
-        val cores = listOf(Color.GREEN, Color.YELLOW, Color.RED)
+        arcPointer.value = current_level
+        arcPointer.setNotches(4)
+        val cores = listOf(Color.GREEN, Color.YELLOW, Color.rgb(255, 165, 0), Color.RED)
         arcPointer.setNotchesColors(cores.toIntArray())
         arcPointer.setNotchesStrokeWidth(15.0f)
         arcPointer.setAnimated(true)
@@ -39,7 +41,14 @@ class VaccinationFragment : Fragment() {
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
 
-
+        if(current_level ==0.8f){
+            current_level = danger_levels.get(0)
+        }else{
+            current_level = danger_levels.get(
+                danger_levels.indexOf(
+                    current_level
+                )+1)
+        }
 
         doses_api.text = truncateNumber(DataSource().doses.toFloat()).toString()
         doses_novas_api.text = "+" + DataSource().doses_novas.toString()

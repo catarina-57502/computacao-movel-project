@@ -36,8 +36,8 @@ class TestDetailActivity : AppCompatActivity() {
         val arcPointer: ArcPointer = findViewById(R.id.arcpointer)
         arcPointer.value =
             current_level
-        arcPointer.setNotches(3)
-        val cores = listOf(Color.GREEN, Color.YELLOW, Color.RED)
+        arcPointer.setNotches(4)
+        val cores = listOf(Color.GREEN, Color.YELLOW, Color.rgb(255, 165, 0), Color.RED)
         arcPointer.setNotchesColors(cores.toIntArray())
         arcPointer.setNotchesStrokeWidth(15.0f)
         arcPointer.setAnimated(true)
@@ -46,7 +46,7 @@ class TestDetailActivity : AppCompatActivity() {
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
 
-        if(current_level ==0.75f){
+        if(current_level ==0.8f){
             current_level = danger_levels.get(0)
         }else{
             current_level = danger_levels.get(

@@ -35,8 +35,8 @@ class DashboardFragment : Fragment(), ReceiveDashboardListener {
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
         arcPointer.value =
             current_level
-        arcPointer.setNotches(3)
-        val cores = listOf(Color.GREEN, Color.YELLOW, Color.RED)
+        arcPointer.setNotches(4)
+        val cores = listOf(Color.GREEN, Color.YELLOW, Color.rgb(255, 165, 0), Color.RED)
         arcPointer.setNotchesColors(cores.toIntArray())
         arcPointer.setNotchesStrokeWidth(15.0f)
         arcPointer.setAnimated(true)
@@ -45,7 +45,7 @@ class DashboardFragment : Fragment(), ReceiveDashboardListener {
         arcPointer.setMarkerStrokeWidth(7.0f)
         arcPointer.setLineStrokeWidth(7.0f)
 
-        if(current_level ==0.75f){
+        if(current_level ==0.8f){
             current_level = danger_levels.get(0)
         }else{
             current_level = danger_levels.get(
@@ -63,18 +63,27 @@ class DashboardFragment : Fragment(), ReceiveDashboardListener {
     }
 
     override fun onDestroy() {
+        viewModel.unregisterDashboardListener(this)
         super.onDestroy()
-        //DashboardViewModel.unregisterDashboardListener(this)
     }
 
     override fun onReceiveDashboard(dashboard: CovidData) {
+
         confirmados_api.text = casasMilhares(dashboard.confirmados.toString())
         obitos_api.text = casasMilhares(dashboard.obito.toString())
         recuperados_api.text = casasMilhares(dashboard.recuperados.toString())
         internados_api.text = casasMilhares(dashboard.internados.toString())
         internados_uci_api.text = casasMilhares(dashboard.internados_uci.toString())
-        confirmados_novos_api.text = "+" + dashboard.confirmados_novos.toString()
-        obitos_novos_api.text = "+" + dashboard.obitos_novos.toString()
+        if(dashboard.confirmados_novos>0){
+            confirmados_novos_api.text = "+" + dashboard.confirmados_novos.toString()
+        }else{
+            confirmados_novos_api.text = dashboard.confirmados_novos.toString()
+        }
+        if(dashboard.obitos_novos>0){
+            obitos_novos_api.text = "+" + dashboard.obitos_novos.toString()
+        }else{
+            obitos_novos_api.text = dashboard.obitos_novos.toString()
+        }
         recuperados_novos_api.text = "+" + dashboard.recuperados_novos.toString()
         if(dashboard.internados_novos>0){
             internados_novos_api.text = "+" + dashboard.internados_novos.toString()
@@ -87,19 +96,22 @@ class DashboardFragment : Fragment(), ReceiveDashboardListener {
         }else{
             internados_uci_novos_api.text = dashboard.internados_uci_novos.toString()
         }
-        norte_api.text = dashboard.norte.toString()
-        centro_api.text = dashboard.centro.toString()
-        lvt_api.text = dashboard.lvt.toString()
-        alentejo_api.text = dashboard.alentejo.toString()
-        algarve_api.text = dashboard.algarve.toString()
-        acores_api.text = dashboard.acores.toString()
-        madeira_api.text = dashboard.madeira.toString()
+        norte_api.text = casasMilhares(dashboard.norte.toString())
+        centro_api.text = casasMilhares(dashboard.centro.toString())
+        lvt_api.text = casasMilhares(dashboard.lvt.toString())
+        alentejo_api.text = casasMilhares(dashboard.alentejo.toString())
+        algarve_api.text = casasMilhares(dashboard.algarve.toString())
+        acores_api.text = casasMilhares(dashboard.acores.toString())
+        madeira_api.text = casasMilhares(dashboard.madeira.toString())
         if(dashboard.rt <= 1){
             rt_image.setImageDrawable(resources.getDrawable(R.drawable.ic_ok))
         }else{
             rt_image.setImageDrawable(resources.getDrawable(R.drawable.ic_bad))
         }
         rt_text.text = resources.getString(R.string.rt) + " = " + dashboard.rt.toString()
+
+        data_update.text = dashboard.data
+
     }
 
     fun casasMilhares(number: String) : String{
