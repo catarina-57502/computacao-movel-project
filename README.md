@@ -10,4 +10,4 @@ Autoavaliação Parte 1: 16.5
 
 Autoavaliação Parte 2: 
 
-Melhorias:
+Melhorias: Colocámos uma TextView com a data de quando os dados que aparecem sofreram a última atualização
