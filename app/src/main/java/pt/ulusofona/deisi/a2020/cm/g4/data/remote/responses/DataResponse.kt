@@ -19,6 +19,7 @@ data class DataResponse(
     @SerializedName("rt_nacional") val rt_nacional:Double,
 
     /***********************************Vacinas*******************************************/
+    @SerializedName("Data") val id:Long,
     @SerializedName("Vacinados_Ac") val doses:String,
     @SerializedName("Vacinados") val doses_novas:String,
     @SerializedName("Inoculacao1_Ac") val doses1:String,

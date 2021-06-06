@@ -10,6 +10,7 @@ data class VaccinationData(var data: String) {
     @PrimaryKey
     var uuid: String = UUID.randomUUID().toString()
 
+    var id = 0
     var doses = 0
     var doses1 = 0
     var doses2 = 0

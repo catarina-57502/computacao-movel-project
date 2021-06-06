@@ -16,5 +16,8 @@ interface VaccineDataDAO {
     @Query("SELECT * FROM vaccinationdata WHERE uuid = :uuid")
     suspend fun getById(uuid:String): VaccinationData
 
+    @Query("SELECT * FROM vaccinationdata WHERE id = :id")
+    suspend fun getByIdData(id:Long): VaccinationData
+
 }
 

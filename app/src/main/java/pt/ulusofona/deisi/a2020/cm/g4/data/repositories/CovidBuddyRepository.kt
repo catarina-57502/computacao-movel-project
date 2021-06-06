@@ -17,6 +17,7 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
+var idDefault: Long = -563637888
 
 class CovidBuddyRepository(private val local: CovidDataDAO, private val localVaccines: VaccineDataDAO, private val remote: Retrofit) {
 
@@ -182,7 +183,7 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val localVac
                             covidToday.obitos_novos = covidToday.obito - covidYesterday.obito
                             covidToday.internados_novos = covidToday.internados - covidYesterday.internados
                             covidToday.internados_uci_novos = covidToday.internados_uci - covidYesterday.internados_uci
-                            local?.insert(covidToday)
+                            local.insert(covidToday)
                             notifyDashboardListeners(covidToday)
                         }
 
@@ -312,10 +313,19 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val localVac
         CoroutineScope(Dispatchers.IO).launch {
             val sdf = SimpleDateFormat("dd-MM-yyyy")
             val currentDate = sdf.format(Date())
+            var id: VaccinationData? = localVaccines.getByIdData(idDefault)
 
-            val response = service.getLastUpdateVaccines()
-            if (response.isSuccessful) {
+            if(id == null){
+                println("nao existe na bd, fui ws")
+                val response = service.getLastUpdateVaccines()
+                if (response.isSuccessful) {
                     val vaccinesToday = VaccinationData(currentDate)
+
+                    val idTemp = response.body()?.size?.let { response.body()?.get(it-1)?.id}
+                    if (idTemp != null) {
+                        vaccinesToday.id = idTemp.toInt()
+                        idDefault = idTemp
+                    }
 
                     val dosesTemp = response.body()?.size?.let { response.body()?.get(it-1)?.doses}
                     if (dosesTemp != null) {
@@ -348,7 +358,12 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val localVac
                     }
                     localVaccines.insert(vaccinesToday)
                     notifyVaccinesListeners(vaccinesToday)
+                }
+            }else{
+                println("existe na bd, fui repo")
+                notifyVaccinesListeners(id)
             }
+
 
 
         }
