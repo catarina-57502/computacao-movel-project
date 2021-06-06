@@ -10,18 +10,25 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import butterknife.ButterKnife
+import com.google.android.gms.location.LocationResult
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlinx.android.synthetic.main.fragment_vaccination.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.CovidData
 import pt.ulusofona.deisi.a2020.cm.g4.data.sensors.location.FusedLocation
+import pt.ulusofona.deisi.a2020.cm.g4.data.sensors.location.OnLocationChangedListener
+import pt.ulusofona.deisi.a2020.cm.g4.ui.fragments.premissions.PermissionedFragment
 import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.ReceiveDashboardListener
 import pt.ulusofona.deisi.a2020.cm.g4.ui.viewmodels.DashboardViewModel
+import java.util.jar.Manifest
 
-class DashboardFragment : Fragment(), ReceiveDashboardListener {
+const val REQUEST_CODE_MAP = 100
+
+class DashboardFragment : ReceiveDashboardListener, PermissionedFragment(REQUEST_CODE_MAP), OnLocationChangedListener {
 
     private lateinit var viewModel : DashboardViewModel
 
@@ -33,8 +40,9 @@ class DashboardFragment : Fragment(), ReceiveDashboardListener {
     }
 
     override fun onStart() {
+        super.onRequestPermissions(activity?.baseContext!!, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION))
         super.onStart()
-        FusedLocation.start(activity as Context)
+
 
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
         arcPointer.value =
@@ -130,5 +138,16 @@ class DashboardFragment : Fragment(), ReceiveDashboardListener {
             return number.substring(0, 1) + '.' + number.substring(1)
         }
         return number
+    }
+
+    override fun onRequestPermissionsSucess() {
+        FusedLocation.registerListener(this)
+    }
+
+    override fun onRequestPermissionsFailure() {
+    }
+
+    override fun onLocationChanged(location: LocationResult) {
+        val location = location.lastLocation
     }
 }

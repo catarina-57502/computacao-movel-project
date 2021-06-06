@@ -3,7 +3,7 @@ package pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
-/*
+
 @Entity
 data class VaccinationData(var data: String) {
 
@@ -19,4 +19,4 @@ data class VaccinationData(var data: String) {
 
 
 }
- */
+

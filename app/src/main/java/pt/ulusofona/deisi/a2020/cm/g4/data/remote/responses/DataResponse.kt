@@ -19,10 +19,10 @@ data class DataResponse(
     @SerializedName("rt_nacional") val rt_nacional:Double,
 
     /***********************************Vacinas*******************************************/
-    @SerializedName("doses") val doses:String,
-    @SerializedName("doses_novas") val doses_novas:String,
-    @SerializedName("doses1") val doses1:String,
-    @SerializedName("doses2") val doses2:String,
-    @SerializedName("doses1_novas") val doses1_novas:String,
-    @SerializedName("doses2_novas") val doses2_novas:String
+    @SerializedName("Vacinados_Ac") val doses:String,
+    @SerializedName("Vacinados") val doses_novas:String,
+    @SerializedName("Inoculacao1_Ac") val doses1:String,
+    @SerializedName("Inoculacao2_Ac") val doses2:String,
+    @SerializedName("Inoculacao1") val doses1_novas:String,
+    @SerializedName("Inoculacao2") val doses2_novas:String
 )

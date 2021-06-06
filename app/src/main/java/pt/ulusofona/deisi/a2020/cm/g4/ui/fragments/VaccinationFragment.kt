@@ -9,22 +9,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import butterknife.ButterKnife
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_vaccination.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
-import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.VaccinationData
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
+import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.ReceiveVaccinesListener
+import pt.ulusofona.deisi.a2020.cm.g4.ui.viewmodels.VaccinationViewModel
 
-class VaccinationFragment : Fragment() {
+var POPULACAO_PORTUGUESA = 10295909
+
+class VaccinationFragment: Fragment(), ReceiveVaccinesListener{
+
+    private lateinit var viewModel : VaccinationViewModel
+
 
     private val TAG = VaccinationFragment::class.java.simpleName
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_vaccination, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_vaccination, container, false)
+       viewModel = ViewModelProviders.of(this).get(VaccinationViewModel::class.java)
+        ButterKnife.bind(this, view)
+        return view
     }
 
     override fun onStart() {
@@ -50,18 +59,47 @@ class VaccinationFragment : Fragment() {
                 )+1)
         }
 
-        doses_api.text = truncateNumber(DataSource().doses.toFloat()).toString()
-        doses_novas_api.text = "+" + DataSource().doses_novas.toString()
-        doses1_api.text = truncateNumber(DataSource().doses1.toFloat()).toString()
-        doses1_perc_api.text = (DataSource().doses1_perc * 100).toString() + '%'
-        doses2_api.text = truncateNumber(DataSource().doses2.toFloat()).toString()
-        doses2_perc_api.text = (DataSource().doses2_perc * 100).toString() + '%'
+        viewModel.registerVaccinesListener(this)
+        viewModel.getVaccines()
+
+
 
         simulation_button.setOnClickListener{
             Log.i(TAG, "Click button")
             val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://covid19.min-saude.pt/vacinacao/"))
             startActivity(i)
         }
+    }
+
+override fun onReceiveVaccines(vaccination: VaccinationData) {
+
+        doses_api.text = truncateNumber(vaccination.doses.toFloat()).toString()
+        doses_novas_api.text = "+" + casasMilhares(vaccination.doses_novas.toString())
+        doses1_api.text = truncateNumber(vaccination.doses1.toFloat()).toString()
+        doses1_perc_api.text = "%.2f".format((vaccination.doses1*100)/ POPULACAO_PORTUGUESA.toFloat()) + '%'
+        doses2_api.text = truncateNumber(vaccination.doses2.toFloat()).toString()
+        doses2_perc_api.text = "%.2f".format((vaccination.doses2*100)/ POPULACAO_PORTUGUESA.toFloat()) + '%'
+
+}
+
+
+    override fun onDestroy() {
+        viewModel.unregisterVaccinesListener(this)
+        super.onDestroy()
+    }
+
+    fun casasMilhares(number: String) : String{
+
+        if(number.length==6){
+            return number.substring(0, 3) + '.' + number.substring(3)
+        }
+        if(number.length==5){
+            return number.substring(0, 2) + '.' + number.substring(2)
+        }
+        if(number.length==4){
+            return number.substring(0, 1) + '.' + number.substring(1)
+        }
+        return number
     }
 
     fun truncateNumber(floatNumber: Float): String? {

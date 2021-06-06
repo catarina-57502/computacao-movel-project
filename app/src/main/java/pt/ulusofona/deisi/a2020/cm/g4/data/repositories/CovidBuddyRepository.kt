@@ -5,8 +5,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.dao.CovidDataDAO
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.dao.VaccineDataDAO
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.CovidData
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.VaccinationData
+import pt.ulusofona.deisi.a2020.cm.g4.data.remote.services.VaccinesService
 import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.FetchRepositoryListener
+import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.FetchRepositoryVaccinesListener
 import retrofit2.Retrofit
 import ulht.cm.acalculator.data.remote.services.DashboardService
 import java.text.DateFormat
@@ -14,7 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CovidBuddyRepository(private val local: CovidDataDAO, private val remote: Retrofit) {
+class CovidBuddyRepository(private val local: CovidDataDAO, private val localVaccines: VaccineDataDAO, private val remote: Retrofit) {
 
     fun getCovidData(){
 
@@ -178,7 +182,7 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val remote: 
                             covidToday.obitos_novos = covidToday.obito - covidYesterday.obito
                             covidToday.internados_novos = covidToday.internados - covidYesterday.internados
                             covidToday.internados_uci_novos = covidToday.internados_uci - covidYesterday.internados_uci
-                            local.insert(covidToday)
+                            local?.insert(covidToday)
                             notifyDashboardListeners(covidToday)
                         }
 
@@ -269,7 +273,7 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val remote: 
                                         if (internadosUciTemp != null) {
                                             covidDayBeforeYesterday.internados_uci = internadosUciTemp
                                         }
-                                        local.insert(covidDayBeforeYesterday)
+                                        local?.insert(covidDayBeforeYesterday)
                                     }
                                 }
 
@@ -301,16 +305,53 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val remote: 
 
     }
 
-    fun getVaccinesData(){
+    fun getVaccinesData() {
 
+        val service = remote.create(VaccinesService::class.java)
 
         CoroutineScope(Dispatchers.IO).launch {
+            val sdf = SimpleDateFormat("dd-MM-yyyy")
+            val currentDate = sdf.format(Date())
 
+            val response = service.getLastUpdateVaccines()
+            if (response.isSuccessful) {
+                    val vaccinesToday = VaccinationData(currentDate)
+
+                    val dosesTemp = response.body()?.size?.let { response.body()?.get(it-1)?.doses}
+                    if (dosesTemp != null) {
+                        vaccinesToday.doses = dosesTemp.toInt()
+                    }
+
+                    val dosesNovasTemp = response.body()?.size?.let { response.body()?.get(it-1)?.doses_novas}
+                    if (dosesNovasTemp != null) {
+                        vaccinesToday.doses_novas = dosesNovasTemp.toInt()
+                    }
+
+                    val doses1Temp = response.body()?.size?.let { response.body()?.get(it-1)?.doses1}
+                    if (doses1Temp != null) {
+                        vaccinesToday.doses1 = doses1Temp.toInt()
+                    }
+
+                    val doses1NovasTemp = response.body()?.size?.let { response.body()?.get(it-1)?.doses1_novas}
+                    if (doses1NovasTemp != null) {
+                        vaccinesToday.doses1_novas = doses1NovasTemp.toInt()
+                    }
+
+                    val doses2Temp = response.body()?.size?.let { response.body()?.get(it-1)?.doses2}
+                    if (doses2Temp != null) {
+                        vaccinesToday.doses2 = doses2Temp.toInt()
+                    }
+
+                    val doses2NovasTemp = response.body()?.size?.let { response.body()?.get(it-1)?.doses2_novas}
+                    if (doses2NovasTemp != null) {
+                        vaccinesToday.doses2_novas = doses2NovasTemp.toInt()
+                    }
+                    localVaccines.insert(vaccinesToday)
+                    notifyVaccinesListeners(vaccinesToday)
+            }
 
 
         }
-
-
     }
 
     fun getDaysDifference(date: String): Long {
@@ -357,6 +398,29 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val remote: 
             listeners.forEach { it.onRepositoryFetched(dashboard) }
 
         }
+
+    private val listenersVaccines = mutableListOf<FetchRepositoryVaccinesListener>()
+
+
+    fun registerVaccinesListener(listener: FetchRepositoryVaccinesListener) {
+
+        listenersVaccines.add(listener)
+
+    }
+
+
+    fun unregisterVaccinesListener(listener: FetchRepositoryVaccinesListener) {
+
+        listenersVaccines.remove(listener)
+
+    }
+
+
+    fun notifyVaccinesListeners(vaccination: VaccinationData) {
+
+        listenersVaccines.forEach { it.onRepositoryVaccinesFetched(vaccination) }
+
+    }
 
 
 }

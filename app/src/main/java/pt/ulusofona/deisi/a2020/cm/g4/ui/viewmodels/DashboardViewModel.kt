@@ -15,11 +15,11 @@ import ulht.cm.acalculator.data.remote.RetrofitBuilder
 
 const val ENDPOINT = "https://covid19-api.vost.pt/"
 
-class DashboardViewModel(application: Application) : AndroidViewModel(application),
-    FetchDashboardListener {
+class DashboardViewModel(application: Application) : AndroidViewModel(application), FetchDashboardListener {
 
     private val storage = CovidBuddyDatabase.getInstance(application).CovidDataDAO()
-    private val repository = CovidBuddyRepository(storage, RetrofitBuilder.getInstance(ENDPOINT))
+    private val storageVaccines = CovidBuddyDatabase.getInstance(application).VaccineDataDAO()
+    private val repository = CovidBuddyRepository(storage, storageVaccines, RetrofitBuilder.getInstance(ENDPOINT))
 
     private val dashboardLogic = DashboardLogic(repository)
 
