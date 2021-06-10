@@ -19,7 +19,7 @@ class VaccinationViewModel(application: Application) : AndroidViewModel(applicat
 
     private val storage = CovidBuddyDatabase.getInstance(application).VaccineDataDAO()
     private val storageDashboard = CovidBuddyDatabase.getInstance(application).CovidDataDAO()
-    private val repository = CovidBuddyRepository(storageDashboard, storage, RetrofitBuilder.getInstance(ENDPOINT_VACCINES))
+    private val repository = CovidBuddyRepository(storageDashboard, storage, null, RetrofitBuilder.getInstance(ENDPOINT_VACCINES))
 
     private val vaccinationLogic = VaccinationLogic(repository)
 

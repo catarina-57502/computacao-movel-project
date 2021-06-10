@@ -19,7 +19,7 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val storage = CovidBuddyDatabase.getInstance(application).CovidDataDAO()
     private val storageVaccines = CovidBuddyDatabase.getInstance(application).VaccineDataDAO()
-    private val repository = CovidBuddyRepository(storage, storageVaccines, RetrofitBuilder.getInstance(ENDPOINT))
+    private val repository = CovidBuddyRepository(storage, storageVaccines, null, RetrofitBuilder.getInstance(ENDPOINT))
 
     private val dashboardLogic = DashboardLogic(repository)
 

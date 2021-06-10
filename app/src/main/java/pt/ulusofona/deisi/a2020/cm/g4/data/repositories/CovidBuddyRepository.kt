@@ -5,25 +5,30 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.dao.CovidDataDAO
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.dao.TestDAO
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.dao.VaccineDataDAO
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.CovidData
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.Test
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.VaccinationData
 import pt.ulusofona.deisi.a2020.cm.g4.data.remote.services.VaccinesService
 import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.FetchRepositoryListener
+import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.FetchRepositoryTestListListener
+import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.FetchRepositoryTestRegisterListener
 import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.FetchRepositoryVaccinesListener
 import retrofit2.Retrofit
 import ulht.cm.acalculator.data.remote.services.DashboardService
+import java.io.File
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 var idDefault: Long = -563637888
 
-class CovidBuddyRepository(private val local: CovidDataDAO, private val localVaccines: VaccineDataDAO, private val remote: Retrofit) {
+class CovidBuddyRepository(private val local: CovidDataDAO, private val localVaccines: VaccineDataDAO, private val localTests: TestDAO?, private val remote: Retrofit?) {
 
     fun getCovidData(){
 
-        val service = remote.create(DashboardService::class.java)
+        val service = remote?.create(DashboardService::class.java)
 
         CoroutineScope(Dispatchers.IO).launch {
             val sdf = SimpleDateFormat("dd-MM-yyyy")
@@ -31,9 +36,9 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val localVac
             var dateToday: CovidData? = local.getByDate(currentDate)
 
             if(dateToday == null){
-                val response = service.getLastUpdate()
-                if(response.isSuccessful){
-                    if(response.body()?.data == currentDate){
+                val response = service?.getLastUpdate()
+                if(response?.isSuccessful!!){
+                    if(response?.body()?.data == currentDate){
                         val covidToday = CovidData(getPreviousDate(0))
 
                         val confirmadosTemp = response.body()?.confirmados
@@ -308,7 +313,7 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val localVac
 
     fun getVaccinesData() {
 
-        val service = remote.create(VaccinesService::class.java)
+        val service = remote?.create(VaccinesService::class.java)
 
         CoroutineScope(Dispatchers.IO).launch {
             val sdf = SimpleDateFormat("dd-MM-yyyy")
@@ -317,8 +322,8 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val localVac
 
             if(id == null){
                 println("nao existe na bd, fui ws")
-                val response = service.getLastUpdateVaccines()
-                if (response.isSuccessful) {
+                val response = service?.getLastUpdateVaccines()
+                if (response?.isSuccessful!!) {
                     val vaccinesToday = VaccinationData(currentDate)
 
                     val idTemp = response.body()?.size?.let { response.body()?.get(it-1)?.id}
@@ -366,6 +371,17 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val localVac
 
 
 
+        }
+    }
+
+    suspend fun getListTests() {
+        localTests?.getAll()?.let { notifyTestListListeners(it) }
+    }
+
+    fun saveTestLocal(date: String, result: String, local: String, image: String?, dateReg: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            localTests?.insert(Test(date, result, local, image, dateReg))
+            println("Teste = " + date + " | "+ result+ " | " + local+ " | " + dateReg)
         }
     }
 
@@ -434,6 +450,52 @@ class CovidBuddyRepository(private val local: CovidDataDAO, private val localVac
     fun notifyVaccinesListeners(vaccination: VaccinationData) {
 
         listenersVaccines.forEach { it.onRepositoryVaccinesFetched(vaccination) }
+
+    }
+
+    private val listenersTestRegister = mutableListOf<FetchRepositoryTestRegisterListener>()
+
+
+    fun registerTestRegisterListener(listener: FetchRepositoryTestRegisterListener) {
+
+        listenersTestRegister.add(listener)
+
+    }
+
+
+    fun unregisterTestRegisterListener(listener: FetchRepositoryTestRegisterListener) {
+
+        listenersTestRegister.remove(listener)
+
+    }
+
+
+    fun notifyTestRegisterListeners(testRegister: Test) {
+
+        listenersTestRegister.forEach { it.onRepositoryTestRegisterFetched(testRegister) }
+
+    }
+
+    private val listenersTestList = mutableListOf<FetchRepositoryTestListListener>()
+
+
+    fun registerTestListListener(listener: FetchRepositoryTestListListener) {
+
+        listenersTestList.add(listener)
+
+    }
+
+
+    fun unregisterTestListListener(listener: FetchRepositoryTestListListener) {
+
+        listenersTestList.remove(listener)
+
+    }
+
+
+    fun notifyTestListListeners(tests: List<Test>) {
+
+        listenersTestList.forEach { it.onRepositoryTestListFetched(tests) }
 
     }
 

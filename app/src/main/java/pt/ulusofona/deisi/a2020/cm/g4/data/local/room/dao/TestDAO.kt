@@ -6,7 +6,7 @@ import androidx.room.Query
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.Test
 
 @Dao
-interface TestDao {
+interface TestDAO {
 
     @Insert
     suspend fun insert(test: Test)

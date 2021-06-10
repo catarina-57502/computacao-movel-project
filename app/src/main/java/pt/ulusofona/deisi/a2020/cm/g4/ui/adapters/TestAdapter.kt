@@ -12,9 +12,9 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_test_register.view.*
 import kotlinx.android.synthetic.main.item_test.view.*
-import pt.ulusofona.deisi.a2020.cm.g4.domain.test.Test
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.Test
 
-class TestAdapter(private val context: Context, private val layout: Int, private val items: ArrayList<Test>, var clickListner: onTestItemClickListener) :  RecyclerView.Adapter<TestAdapter.TestViewHolder>(){
+class TestAdapter(private val context: Context, private val layout: Int, private val items: List<Test>, var clickListner: onTestItemClickListener) :  RecyclerView.Adapter<TestAdapter.TestViewHolder>(){
 
     class TestViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
@@ -30,7 +30,7 @@ class TestAdapter(private val context: Context, private val layout: Int, private
             result.text = item.result
             local.text = item.local
             dateReg.text = item.dateReg
-            image.setImageBitmap(BitmapFactory.decodeFile(item.image?.absolutePath))
+            image.setImageBitmap(BitmapFactory.decodeFile(item.image))
 
             if(item.result=="Positive"){
                 text.setTextColor(Color.RED)

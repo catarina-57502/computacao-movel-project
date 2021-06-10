@@ -8,10 +8,14 @@ import kotlinx.coroutines.launch
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.CovidBuddyDatabase
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.Test
 import pt.ulusofona.deisi.a2020.cm.g4.data.repositories.CovidBuddyRepository
+import pt.ulusofona.deisi.a2020.cm.g4.domain.data.TestListLogic
 import pt.ulusofona.deisi.a2020.cm.g4.domain.data.TestRegisterLogic
-import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.*
+import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.FetchTestListListener
+import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.FetchTestRegisterListener
+import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.ReceiveTestListListener
+import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.ReceiveTestRegisterListener
 
-class TestRegisterViewModel(application: Application) : AndroidViewModel(application), FetchTestRegisterListener {
+class TestListViewModel(application: Application) : AndroidViewModel(application), FetchTestListListener {
 
     private val storage = CovidBuddyDatabase.getInstance(application).TestDAO()
     private val storageVaccines = CovidBuddyDatabase.getInstance(application).VaccineDataDAO()
@@ -19,50 +23,50 @@ class TestRegisterViewModel(application: Application) : AndroidViewModel(applica
 
     private val repository = CovidBuddyRepository(storageDashboard, storageVaccines, storage, null)
 
-    private val testRegisterLogic = TestRegisterLogic(repository)
+    private val testListLogic = TestListLogic(repository)
 
 
-    fun onClickSubmit(date: String, result: String, local: String, image: String?, dateReg: String){
-        testRegisterLogic.registerTestRegisterListener(this)
+    fun getTestsList(){
+        testListLogic.registerTestListListener(this)
         CoroutineScope(Dispatchers.IO).launch {
-            testRegisterLogic.registerTest(date, result, local, image, dateReg)
+            testListLogic.getAllTests()
         }
     }
 
-    override fun onTestRegisterFetched(testRegister: Test) {
+
+    override fun onTestListFetched(tests: List<Test>) {
 
         CoroutineScope(Dispatchers.Main).launch {
-            notifyTestRegisterListeners(testRegister)
+            notifyTestListListeners(tests)
         }
 
 
     }
 
 
-    private val listeners = mutableListOf<ReceiveTestRegisterListener>()
+    private val listeners = mutableListOf<ReceiveTestListListener>()
 
 
-    fun registerTestRegisterListener(listener: ReceiveTestRegisterListener) {
+    fun registerTestListListener(listener: ReceiveTestListListener) {
 
         listeners.add(listener)
 
     }
 
 
-    fun unregisterTestRegisterListener(listener: ReceiveTestRegisterListener) {
+    fun unregisterTestListListener(listener: ReceiveTestListListener) {
 
         listeners.remove(listener)
 
     }
 
 
-    fun notifyTestRegisterListeners(testRegister: Test) {
+    fun notifyTestListListeners(tests: List<Test>) {
 
 
-        listeners.forEach { it.onReceiveTestRegister(testRegister) }
+        listeners.forEach { it.onReceiveTestList(tests) }
 
 
     }
-
 
 }
