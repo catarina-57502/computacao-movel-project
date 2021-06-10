@@ -9,9 +9,9 @@ import pt.ulusofona.deisi.a2020.cm.g4.ui.fragments.*
 class NavigationManager {
 
     companion object{
-        private fun placeFragment(fm: FragmentManager, fragment: Fragment, bundle: Bundle?){
+        private fun placeFragment(fm: FragmentManager, fragment: Fragment){
             val transition = fm.beginTransaction()
-            fragment.arguments = bundle
+            //fragment.arguments = bundle
             transition.replace(R.id.frame, fragment)
             transition.addToBackStack(null)
             transition.commit()
@@ -20,7 +20,7 @@ class NavigationManager {
         fun goToDigitalContactsFragment(fm: FragmentManager){
             placeFragment(
                 fm,
-                DigitalContactsFragment(), null
+                DigitalContactsFragment()
             )
 
         }
@@ -28,7 +28,7 @@ class NavigationManager {
         fun goToTelephoneContactsFragment(fm: FragmentManager){
             placeFragment(
                 fm,
-                TelephoneContactsFragment(), null
+                TelephoneContactsFragment()
             )
 
         }
@@ -36,14 +36,14 @@ class NavigationManager {
          fun goToDashboardFragment(fm: FragmentManager){
              placeFragment(
                  fm,
-                 DashboardFragment(), null
+                 DashboardFragment()
              )
 
         }
         fun goToContactsFragment(fm: FragmentManager){
             placeFragment(
                 fm,
-                ContactsFragment(), null
+                ContactsFragment()
             )
 
         }
@@ -51,22 +51,22 @@ class NavigationManager {
         fun goToVaccinationFragment(fm: FragmentManager){
             placeFragment(
                 fm,
-                VaccinationFragment(), null
+                VaccinationFragment()
             )
         }
 
         fun goToTestRegisterFragment(fm: FragmentManager){
             placeFragment(
                 fm,
-                TestRegisterFragment(), null
+                TestRegisterFragment()
             )
 
         }
 
-        fun goToTestListFragment(fm: FragmentManager, bundle: Bundle?){
+        fun goToTestListFragment(fm: FragmentManager){
             placeFragment(
                 fm,
-                TestListFragment(), bundle
+                TestListFragment()
             )
 
         }

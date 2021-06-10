@@ -84,12 +84,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val bundle = Bundle()
-        bundle.putParcelableArrayList(EXTRA_TEST, DataSource.tests)
+        //val bundle = Bundle()
         when(item.itemId){
             R.id.nav_dashboard -> NavigationManager.goToDashboardFragment(supportFragmentManager)
             R.id.nav_register -> NavigationManager.goToTestRegisterFragment(supportFragmentManager)
-            R.id.nav_list -> NavigationManager.goToTestListFragment(supportFragmentManager, bundle)
+            R.id.nav_list -> NavigationManager.goToTestListFragment(supportFragmentManager)
             R.id.nav_vaccination -> NavigationManager.goToVaccinationFragment(supportFragmentManager)
             R.id.nav_contacts -> NavigationManager.goToContactsFragment(supportFragmentManager)
         }

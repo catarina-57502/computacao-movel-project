@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_test_register.view.*
 import kotlinx.android.synthetic.main.item_test.view.*
+import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.Test
 
 class TestAdapter(private val context: Context, private val layout: Int, private val items: List<Test>, var clickListner: onTestItemClickListener) :  RecyclerView.Adapter<TestAdapter.TestViewHolder>(){
@@ -24,13 +27,17 @@ class TestAdapter(private val context: Context, private val layout: Int, private
         val dateReg: TextView = view.text_dateReg
         val image: ImageView = view.text_image_view
         val text = view.text_test
+        val hasImage = view.list_image
 
         fun initialize(item: Test, action: onTestItemClickListener){
             date.text = item.date
             result.text = item.result
             local.text = item.local
             dateReg.text = item.dateReg
-            image.setImageBitmap(BitmapFactory.decodeFile(item.image))
+            if(item.image!=null){
+                image.setImageBitmap(BitmapFactory.decodeFile(item.image))
+                hasImage.setImageResource(R.drawable.ic_image)
+            }
 
             if(item.result=="Positive"){
                 text.setTextColor(Color.RED)

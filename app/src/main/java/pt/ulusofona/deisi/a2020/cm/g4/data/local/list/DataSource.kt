@@ -1,5 +1,5 @@
 package pt.ulusofona.deisi.a2020.cm.g4.data.local.list
-import pt.ulusofona.deisi.a2020.cm.g4.domain.test.Test
+import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.Test
 import kotlin.collections.ArrayList
 
 class DataSource{
