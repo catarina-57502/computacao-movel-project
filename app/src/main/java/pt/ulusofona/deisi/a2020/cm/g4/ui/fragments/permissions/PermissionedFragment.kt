@@ -1,14 +1,9 @@
-package pt.ulusofona.deisi.a2020.cm.g4.ui.fragments.premissions
+package pt.ulusofona.deisi.a2020.cm.g4.ui.fragments.permissions
 
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat.checkSelfPermission
-import pt.ulusofona.deisi.a2020.cm.g4.R
 
 
 abstract class PermissionedFragment(private val requestCode: Int) : Fragment() {

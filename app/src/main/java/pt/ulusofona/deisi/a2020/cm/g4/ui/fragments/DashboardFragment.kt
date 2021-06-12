@@ -2,29 +2,27 @@ package pt.ulusofona.deisi.a2020.cm.g4.ui.fragments
 
 import android.content.Context
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import butterknife.ButterKnife
 import com.google.android.gms.location.LocationResult
 import io.github.dvegasa.arcpointer.ArcPointer
 import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.fragment_vaccination.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.current_level
 import pt.ulusofona.deisi.a2020.cm.g4.ui.activities.danger_levels
-import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.entities.CovidData
 import pt.ulusofona.deisi.a2020.cm.g4.data.sensors.location.FusedLocation
 import pt.ulusofona.deisi.a2020.cm.g4.data.sensors.location.OnLocationChangedListener
-import pt.ulusofona.deisi.a2020.cm.g4.ui.fragments.premissions.PermissionedFragment
+import pt.ulusofona.deisi.a2020.cm.g4.ui.fragments.permissions.PermissionedFragment
 import pt.ulusofona.deisi.a2020.cm.g4.ui.listeners.ReceiveDashboardListener
 import pt.ulusofona.deisi.a2020.cm.g4.ui.viewmodels.DashboardViewModel
-import java.util.jar.Manifest
 
 const val REQUEST_CODE_MAP = 100
 
@@ -42,7 +40,6 @@ class DashboardFragment : ReceiveDashboardListener, PermissionedFragment(REQUEST
     override fun onStart() {
         super.onRequestPermissions(activity?.baseContext!!, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION))
         super.onStart()
-
 
         val arcPointer: ArcPointer = getView()!!.findViewById(R.id.arcpointer)
         arcPointer.value =
@@ -142,6 +139,7 @@ class DashboardFragment : ReceiveDashboardListener, PermissionedFragment(REQUEST
 
     override fun onRequestPermissionsSucess() {
         FusedLocation.registerListener(this)
+        println("olaaaa")
     }
 
     override fun onRequestPermissionsFailure() {
@@ -149,5 +147,6 @@ class DashboardFragment : ReceiveDashboardListener, PermissionedFragment(REQUEST
 
     override fun onLocationChanged(location: LocationResult) {
         val location = location.lastLocation
+        println("localizacao= $location")
     }
 }

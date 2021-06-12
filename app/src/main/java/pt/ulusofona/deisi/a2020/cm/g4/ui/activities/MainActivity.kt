@@ -18,6 +18,8 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
+import pt.ulusofona.deisi.a2020.cm.g4.data.sensors.battery.Battery
+import pt.ulusofona.deisi.a2020.cm.g4.data.sensors.battery.OnBatteryCurrentListener
 import pt.ulusofona.deisi.a2020.cm.g4.ui.utils.NavigationManager
 
 
@@ -29,9 +31,11 @@ var danger_levels = listOf<Float>(0.2f, 0.4f, 0.6f, 0.8f)
 
 var count = 0
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, OnBatteryCurrentListener {
 
     private val TAG = MainActivity::class.java.simpleName
+
+    val battery = Battery.start(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +98,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         drawer.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onCurrentChanged(current: Float?) {
+        Battery(this).getBatteryCurrentNow()
     }
 
     override fun onBackPressed() {
