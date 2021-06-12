@@ -8,6 +8,6 @@ Link para video Parte 2:
 
 Autoavaliação Parte 1: 16.5
 
-Autoavaliação Parte 2: 
+Autoavaliação Parte 2: 14
 
 Melhorias: Colocámos uma TextView com a data de quando os dados que aparecem sofreram a última atualização
