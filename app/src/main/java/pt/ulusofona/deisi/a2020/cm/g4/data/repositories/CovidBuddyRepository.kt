@@ -4,6 +4,7 @@ package pt.ulusofona.deisi.a2020.cm.g4.data.repositories
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import pt.ulusofona.deisi.a2020.cm.g4.R
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.dao.CovidDataDAO
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.dao.TestDAO
 import pt.ulusofona.deisi.a2020.cm.g4.data.local.room.dao.VaccineDataDAO

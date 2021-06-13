@@ -17,7 +17,6 @@ import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import pt.ulusofona.deisi.a2020.cm.g4.R
-import pt.ulusofona.deisi.a2020.cm.g4.data.local.list.DataSource
 import pt.ulusofona.deisi.a2020.cm.g4.data.sensors.battery.Battery
 import pt.ulusofona.deisi.a2020.cm.g4.data.sensors.battery.OnBatteryCurrentListener
 import pt.ulusofona.deisi.a2020.cm.g4.ui.utils.NavigationManager
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         if(batteryPct!=null){
-            if(batteryPct<20.0){
+            if(batteryPct>20.0){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 delegate.applyDayNight()
             }else{

@@ -8,7 +8,7 @@ import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 
-class Battery(private val context: Context) : Runnable {
+class Battery(private val context: Context) : Runnable{
 
     private val TIME_BETWEEN_UPDATES = 20*1000L
 
@@ -40,7 +40,6 @@ class Battery(private val context: Context) : Runnable {
 
     override fun run(){
         val current = getBatteryCurrentNow()
-        println(current.toString())
         handler.postDelayed(this, TIME_BETWEEN_UPDATES)
     }
 
